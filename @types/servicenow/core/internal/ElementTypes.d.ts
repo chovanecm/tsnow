@@ -78,6 +78,83 @@ declare namespace glideElementType {
         __g_boolean__: never
     }
 
+    type g_currency = {
+        /**
+         * Returns the currency value in the reference currency as an unformatted number.
+         */
+        getReferenceValue(): string
+        /**
+         * Returns the currency value in the user's session currency as and unformatted number.	
+         */
+        getSessionValue(): string
+
+        /**
+         * Returns the currency value as entered as an unformatted number.
+         */
+        getCurrencyValue(): string
+
+        /**
+         * Returns the currency value in the user's session currency formatted in the user's locale with a currency symbol.	
+         */
+        getDisplayValue(): string
+
+        /**
+         * Returns the currency value in the user's session currency formatted in the user's locale with a currency symbol.	
+         */
+        getSessionDisplayValue(): string
+
+        /**
+         * Returns the currency value in the reference currency formatted in the user's locale with a currency symbol.
+         */
+        getReferenceDisplayValue(): string
+
+        /**
+         * Returns the currency value as entered formatted in the user's locale with a currency symbol.	
+         */
+        getCurrencyDisplayValue(): string
+
+        /**
+         * Returns the 3-letter ISO currency code for the currency value as entered.	
+         */
+        getCurrencyCode(): string
+
+        /**
+         * Returns the 3-letter ISO currency code for the user's session currency.	
+         */
+        getSessionCurrencyCode(): string
+
+        /**
+         * Returns the 3-letter ISO currency code for the reference currency.
+         */
+        getReferenceCurrencyCode(): string
+
+        /**
+         * Sets the currency value as:
+            - An unformatted number taken as a value in the user's session currency.
+            - An unformatted number prefixed by a 3-letter currency code separated by a semicolon.
+         * @param value 
+         @example
+         field.setValue("4369.21");
+         field.setValue("JPY;4369.2")
+         */
+        setValue(value: string): void
+
+        /**
+         * 	Sets the currency value as:
+            - A number formatted in the user's locale that is taken as a value in the user's session currency.
+            - A number formatted in the user's locale prefixed by a 3-letter currency code separated by a semicolon.
+         * @param value 
+         * @example
+         field.setDisplayValue("4369.21");
+         field.setDisplayValue("JPY;4369.21");
+         */
+        setDisplayValue(value: string): void
+    }
+
+    type g_price = g_currency
+
+    
+
 }
 declare namespace internal {
     type AllowedTypes<T> = T extends glideElementType.g_choice<infer Choices> ? Choices :

@@ -5,6 +5,7 @@ declare interface sys_user {
     choice: GlideElement<sys_user, glideElementType.g_choice<"one"|"two">>
     anotherChoice: GlideElement<sys_user, glideElementType.g_choice<"one"|"two">>
     active: GlideElement<sys_user, glideElementType.g_boolean>
+    cost: GlideElement<sys_user, glideElementType.g_currency>
     _referenceKeys: "company.sys_id" | "company.name"
 }
 declare interface cmn_company {

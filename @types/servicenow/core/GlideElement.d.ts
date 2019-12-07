@@ -76,6 +76,12 @@ declare type GlideElement<GlideRecordType, Type = glideElementType.defaultType> 
     setError(value: string): void;
 
     setValue(value: internal.AllowedTypes<Type>): void;
+    /**
+     * Get value of this element.
+     * 
+     * Warning: This method is kind of missing in the official documentation
+     */
+    getValue(): internal.GetValueReturnValue<GlideElement<GlideRecordType, Type>>
 
     toString(): string; 
 }

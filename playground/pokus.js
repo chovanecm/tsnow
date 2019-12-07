@@ -21,6 +21,10 @@ function ahoj(abc) {
     abc.getElement("choice") === abc.choice // OK
     abc.sys_created_on.getGlideObject().onOrBefore(new GlideDateTime()) // OK
     abc.choice.getGlideObject().onOrBefore(new GlideDateTime()) // WRONG
+    abc.choice.getValue() === "one" // OK
+    abc.choice.getValue() === "blabla" // WRONG
+    abc.cost.getReferenceCurrencyCode() === "CZK" // OK
+    abc.choice.getReferenceCurrencyCode() === "CZK" // WRONG
     
     
     var createdOn = abc.sys_created_on.getGlideObject();
