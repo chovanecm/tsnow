@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "module": "None",
+    "target": "es5",
+    "sourceMap": false,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "checkJs": true,
+    "noImplicitReturns": true,
+    "lib": ["es5"],
+    "noImplicitAny": false,
+    "noEmit": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "watch": true,
+    "strictPropertyInitialization": true
+  },
+    "include": [
+    	"**/*.ts",
+        "**/*.js"
+    ],
+
+  "exclude": [
+    "node_modules",
+    "docs",
+    "ts-out",
+    "**/es2017/**/*"
+  ]
+}
