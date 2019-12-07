@@ -1,13 +1,15 @@
 declare interface sys_user {
-    sys_id: GlideElement,
-    company: GlideElement<glideType.GlideReference<cmn_company>>,
-    choice: GlideElement<glideType.GlideChoice<"one"|"two">>
-    anotherChoice: GlideElement<glideType.GlideChoice<"one"|"two">>
+    sys_id: GlideElement<sys_user>,
+    sys_created_on: GlideElement<sys_user, glideElementType.GlideDateTime>,
+    company: GlideElement<sys_user, glideElementType.GlideReference<cmn_company>>,
+    choice: GlideElement<sys_user, glideElementType.GlideChoice<"one"|"two">>
+    anotherChoice: GlideElement<sys_user, glideElementType.GlideChoice<"one"|"two">>
     _referenceKeys: "company.sys_id" | "company.name"
 }
 declare interface cmn_company {
-    sys_id: GlideElement<string>,
-    name: GlideElement<string>
+    sys_id: GlideElement<cmn_company, string>,
+    name: GlideElement<cmn_company, string>,
+    sys_created_on: GlideElement<sys_user, glideElementType.GlideDateTime>,
 }
 
 declare type TableIndex = {

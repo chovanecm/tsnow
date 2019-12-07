@@ -1,4 +1,4 @@
-declare type GlideElement<Type = any> = Type & {
+declare type GlideElement<GlideRecordType, Type = object> = Type & {
     canCreate(): boolean;
 
     canRead(): boolean;
@@ -11,13 +11,46 @@ declare type GlideElement<Type = any> = Type & {
 
     changesTo(value: internal.AllowedTypes<Type>): boolean;
 
+    /**
+     * Debugs the object and adds debug messages using setError(String).
+     * @param object - An object to debug.
+     */
+    debug(object: any): void
+
     getAttribute(attributeName: string): string;
 
-    getChoices(name?: string): any[];
+    getBooleanAttribute(attributeName: string): boolean
+
+    /**
+     * Name of the base table. This may be different from the table that the field
+     * is defined on. See "Tables and Classes" in the product documentation.
+     */
+    getBaseTableName(): TableName
+
+    /**
+     * Generates a choice list for a field.
+     * Returns the choice values from the base table only, not from the extended table.
+     * @param value - An optional dependent value.
+     * @returns The choice values for the field.
+     */
+    getChoices(value?: string): string[];
+
+    /**
+     * Gets the choice label for the current choice value.
+     */
+    getChoiceValue(): string;
 
     getDecryptedValue(): string;
 
+    /**
+     * Returns the object's label.
+     */
     getLabel(): string;
+
+    /**
+     * Returns the name of the field.
+     */
+    getName(): string;
 
     getDisplayValue(maxCharacters?: number): string;
 
@@ -25,7 +58,13 @@ declare type GlideElement<Type = any> = Type & {
 
     getElementValue(elementName: internal.OwnKeys<Type>): string;
 
-    getReferenceTable(): string;
+    getGlideRecord(): GlideRecord<GlideRecordType>
+
+    /**
+     * Determines if the field has a value.
+    * @returns True if the field has a value, false otherwise.
+     */
+    hasValue(): boolean
 
     nil(): boolean;
 

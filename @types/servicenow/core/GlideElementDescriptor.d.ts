@@ -1,4 +1,4 @@
-interface GlideElementDescriptor {
+declare type GlideElementDescriptor = {
     getAttachmentEncryptionType(): string;
 
     getEncryptionType(): String;
