@@ -1,6 +1,7 @@
 declare interface sys_user {
     sys_id: GlideElement,
-    company: GlideElement<GlideReference<cmn_company>>,
+    company: GlideElement<glideType.GlideReference<cmn_company>>,
+    choice: GlideElement<glideType.GlideChoice<"one"|"two">>
     _referenceKeys: "company.sys_id" | "company.name"
 }
 declare interface cmn_company {
