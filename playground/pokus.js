@@ -6,11 +6,25 @@ function ahoj(abc) {
     abc.addQuery("company.name")
     abc.setValue("choice", "two-blbost"); // WRONG
     abc.setValue("choice", "two"); // OK
-    abc.setValue("company", "abc"); // WRONG
-
+    abc.setValue("company", "abc"); // WRONG´
+    abc.setValue("active", "a") // WRONG
+    abc.setValue("active", "0") // OK
+    abc.setValue("active", true) // OK
+    abc.active.getElementValue("active") === "xyz" // WRONG: no overlap
+    abc.active.getElementValue("active") === "1" // OK
+    abc.getValue("active") === true // WRONG: no overlap
+    abc.getValue("active") === "1" // OK
+    abc.getValue("choice") === "one" // OK
+    abc.getValue("choice") === "random" // WRONG - no overlap
+    abc.getElement("active") === abc.active // OK
+    abc.getElement("choice") === abc.getElement("company") // WRONG
+    abc.getElement("choice") === abc.choice // OK
+    abc.sys_created_on.getGlideObject().onOrBefore(new GlideDateTime()) // OK
+    abc.choice.getGlideObject().onOrBefore(new GlideDateTime()) // WRONG
+    
+    
     var createdOn = abc.sys_created_on.getGlideObject();
     createdOn.subtract(456);
-
 
 
     var company = abc.getElement("company");
@@ -78,3 +92,18 @@ function ahoj(abc) {
     }
    
 })("sys_user");
+
+
+function demo() {
+    var now = new GlideDateTime();
+    var user = new GlideRecord("sys_user");
+    
+    user.addQuery("company.name", "CONTAINS", "DHL");
+    user.setLimit(1);
+    user.query();
+    if (user.next()) {
+        if (user.sys_created_on.getGlideObject().onOrAfter(now)) {
+            user.sys_id.setValue("ahoj");
+        }
+    }
+}

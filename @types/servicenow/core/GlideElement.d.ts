@@ -1,4 +1,9 @@
-declare type GlideElement<GlideRecordType, Type = object> = Type & {
+declare namespace internal {
+    type GetElementValueType<GlideRecordType> = {
+        getElementValue<FieldName extends internal.OwnKeys<GlideRecordType>>(elementName: FieldName): internal.GetValueReturnValue<GlideRecordType[FieldName]>;
+    }
+}
+declare type GlideElement<GlideRecordType, Type = glideElementType.defaultType> = Type & internal.GetElementValueType<GlideRecordType> & {
     canCreate(): boolean;
 
     canRead(): boolean;
@@ -55,8 +60,6 @@ declare type GlideElement<GlideRecordType, Type = object> = Type & {
     getDisplayValue(maxCharacters?: number): string;
 
     getED(): GlideElementDescriptor;
-
-    getElementValue(elementName: internal.OwnKeys<Type>): string;
 
     getGlideRecord(): GlideRecord<GlideRecordType>
 
