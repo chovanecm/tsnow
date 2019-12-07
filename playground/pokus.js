@@ -17,3 +17,21 @@ function ahoj(abc, pokus) {
     ahojSvete.company.getRefRecord()
     
 }
+
+
+(function () {
+    var mujGr;
+    if (window) {
+        mujGr = new GlideRecord("sys_user");
+        if (mujGr.getValue("choice") === mujGr.getValue("anotherChoice")) {
+            if (mujGr.getValue("company") === "one") {
+                /**
+                 @type {ChoiceValue<sys_user, "choice">}
+                 */
+                var str = "one";
+                mujGr.setValue("choice", str)
+            }
+        }
+    }
+    
+});

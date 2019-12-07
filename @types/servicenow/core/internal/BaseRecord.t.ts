@@ -32,7 +32,7 @@ declare namespace internal {
 
         _next(): boolean;
 
-        getValue(field: internal.OwnKeys<T>): string|null;
+        getValue<FieldName extends internal.OwnKeys<T>>(field: FieldName): GetValueReturnValue<T[FieldName]>;
     }
 
 }

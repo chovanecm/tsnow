@@ -92,7 +92,7 @@ declare type GlideRecord<T = any> = internal.BaseRecord<T> & internal.GlideEleme
 
     updateMultiple(): void;
 
-    setValue<Field extends internal.OwnKeys<T>>(fieldName: Field, value: internal.AllowedTypesOfField<T[Field]>): void;
+    setValue<FieldName extends internal.OwnKeys<T>>(fieldName: FieldName, value: internal.AllowedTypesOfField<T[FieldName]>): void;
 }
 
 
