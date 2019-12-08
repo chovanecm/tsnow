@@ -132,7 +132,7 @@ declare type GlideRecord<T = any> = internal.BaseRecord<T> & internal.GlideEleme
     /**
      * Retrieves a Java ArrayList of fields in the current record.
      */
-    getFields(): Packages.java.util.List<GlideElement<any>>
+    getFields(): Packages.java.util.List<GlideElement<T>>
 
     /**
      * Retrieves the table's label.
