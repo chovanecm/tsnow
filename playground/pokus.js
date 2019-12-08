@@ -48,6 +48,8 @@ function ahoj(abc) {
     abc.getRelatedTables().keySet().toArray()[0] === "problem" // WRONG - type mismatch
     String(abc.getRelatedTables().keySet().toArray()[0]) === "problem" // OK
 
+    JSUtil.getBooleanValue(abc, "choice")
+
 
     var obj = {random: "yes"}
     new GlideRecordUtil().populateFromGR(obj, abc); // OK
