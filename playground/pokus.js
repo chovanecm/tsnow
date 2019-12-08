@@ -26,6 +26,23 @@ function ahoj(abc) {
     abc.cost.getReferenceCurrencyCode() === "CZK" // OK
     abc.choice.getReferenceCurrencyCode() === "CZK" // WRONG
     
+    var arrUtils = new ArrayUtil();
+    arrUtils.concat(["first", "second"], ["third"])[0].substring(0) // OK
+    arrUtils.concat(["first", "second"], ["third", true])[0].substring(0) // WRONG
+
+    arrUtils.intersect(["first", "hello"], ["string"])[0].substring(0); // OK
+    arrUtils.intersect(["first", "hello"], "what")[0].substring(0); // WRONG
+    arrUtils.intersect(["first", "hello"], [123])[0].substring(0); // WRONG
+    arrUtils.intersect(["first", "hello"], [123], ["well"]) // OK
+
+    arrUtils.union(["first", "hello"], ["string"])[0].substring(0); // OK
+    arrUtils.union(["first", "hello"], "what")[0].substring(0); // WRONG
+    arrUtils.union(["first", "hello"], [123], ["well"])[0].toString() // OK
+    arrUtils.union(["first", "hello"], [123], ["well"])[0].substring(0) // WRONG
+    arrUtils.unique(["hello", "world"])[0].substr(0) // OK
+
+
+    
     
     var createdOn = abc.sys_created_on.getGlideObject();
     createdOn.subtract(456);
@@ -110,4 +127,5 @@ function demo() {
             user.sys_id.setValue("ahoj");
         }
     }
+    [].indexOf()
 }
