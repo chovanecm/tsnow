@@ -59,7 +59,7 @@ function ahoj(abc) {
     var createdOn = abc.sys_created_on.getGlideObject();
     createdOn.subtract(456);
 
-
+    
     var company = abc.getElement("company");
     abc.addJoinQuery("sys_user", "company", "company.name");
 
