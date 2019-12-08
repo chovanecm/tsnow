@@ -43,10 +43,13 @@ function ahoj(abc) {
 
     var getGr = new GlideRecordUtil().getGR("sys_user", "123456").choice.canCreate() // OK
     var getGr = new GlideRecordUtil().getGR("cmn_company", "123456").choice.canCreate() // WRONG
-    var ahooj = "sys_user"
-
     var x = new GlideRecordUtil().getTables("sys_user").get(0).toString() === "ahoj" // WRONG - java String vs normal string
     
+    abc.getRelatedTables().keySet().toArray()[0] === "problem" // WRONG - type mismatch
+    String(abc.getRelatedTables().keySet().toArray()[0]) === "problem" // OK
+    
+
+
     var obj = {random: "yes"}
     new GlideRecordUtil().populateFromGR(obj, abc); // OK
     new GlideRecordUtil().mergeToGR(obj, abc); // OK
