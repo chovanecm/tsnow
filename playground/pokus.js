@@ -6,7 +6,7 @@ function ahoj(abc) {
     abc.addQuery("company.name")
     abc.setValue("choice", "two-blbost"); // WRONG
     abc.setValue("choice", "two"); // OK
-    abc.setValue("company", "abc"); // WRONG´
+    abc.setValue("company", "abc"); // OK
     abc.setValue("active", "a") // WRONG
     abc.setValue("active", "0") // OK
     abc.setValue("active", true) // OK
@@ -41,8 +41,16 @@ function ahoj(abc) {
     arrUtils.union(["first", "hello"], [123], ["well"])[0].substring(0) // WRONG
     arrUtils.unique(["hello", "world"])[0].substr(0) // OK
 
+    var getGr = new GlideRecordUtil().getGR("sys_user", "123456").choice.canCreate() // OK
+    var getGr = new GlideRecordUtil().getGR("cmn_company", "123456").choice.canCreate() // WRONG
+    var ahooj = "sys_user"
 
+    var x = new GlideRecordUtil().getTables("sys_user").get(0).toString() === "ahoj" // WRONG - java String vs normal string
     
+    var obj = {random: "yes"}
+    new GlideRecordUtil().populateFromGR(obj, abc); // OK
+    new GlideRecordUtil().mergeToGR(obj, abc); // OK
+
     
     var createdOn = abc.sys_created_on.getGlideObject();
     createdOn.subtract(456);
@@ -129,3 +137,15 @@ function demo() {
     }
     [].indexOf()
 }
+
+
+
+
+var MyClass = Class.create();
+MyClass.prototype = {
+    ahoj: function () {
+        return 1;
+    }
+}
+
+var instance = new MyClass();
