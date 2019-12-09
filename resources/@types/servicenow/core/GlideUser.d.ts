@@ -23,7 +23,7 @@ declare namespace internal {
          */
         getMyGroups(): Packages.java.util.List<Packages.java.lang.String>
 
-         /**
+        /**
          * Returns a list of role names that includes explicitly granted roles, inherited roles, and roles acquired by group membership.
          */
         getRoles(): Packages.java.util.List<Packages.java.lang.String>
@@ -32,30 +32,32 @@ declare namespace internal {
          * Returns the list of roles explicitly granted to the user.
          */
         getUserRoles(): Packages.java.util.List<Packages.java.lang.String>
+
         /**
          * Returns the user object associated with the passed-in user ID (sys_id in sys_user) or user_name.
-         * @param sysIdOrUserName 
+         * @param sysIdOrUserName
          */
         getUserByID(sysIdOrUserName: string): GlideUser
 
         getName(): Packages.java.lang.String;
 
         getFirstName(): Packages.java.lang.String
+
         getLastName(): Packages.java.lang.String
-        
+
         getPreference(name: string): Packages.java.lang.String;
 
         /**
          * Determines if the current user has the specified role.
 
 
-         * @param role 
+         * @param role
          */
         hasRole(role: string): boolean;
 
         /**
          * Determines if the current user is a member of the specified group.
-         * @param group 
+         * @param group
          */
         isMemberOf(group: string): boolean;
 

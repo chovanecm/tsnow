@@ -2,6 +2,7 @@ declare namespace internal {
     interface WithReferenceKeys {
         _referenceKeys: string
     }
+
     type TestType = {
         ownKey1: string,
         ownKey2: number,

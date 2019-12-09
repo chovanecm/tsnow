@@ -9,19 +9,19 @@ declare class GlideTime {
     constructor(milliseconds?: number)
 
     /**
-     * 
-     * @param format 
+     *
+     * @param format
      * @example
-     * var gt = new GlideTime(); 
-    * gt.setValue('12:00:00');
-    * gs.info(gt.getByFormat("HH:mm"));
+     * var gt = new GlideTime();
+     * gt.setValue('12:00:00');
+     * gs.info(gt.getByFormat("HH:mm"));
      */
     getByFormat(format: string): string;
 
     /**
      * Gets the time in the current user's display format and time zone.
 
-        When designing business rules or script includes remember that this method may return values in different formats for different users.
+     When designing business rules or script includes remember that this method may return values in different formats for different users.
      */
     getDisplayValue(): string;
 
@@ -31,6 +31,7 @@ declare class GlideTime {
     getDisplayValueinternal(): string;
 
     getHourLocalTime(): number;
+
     /**
      * Returns the hours part of the time using the local time zone. The number of hours is based on a 24 hour clock.
      */
@@ -58,7 +59,7 @@ declare class GlideTime {
     getValue(): string;
 
     /**
-     * 
+     *
      * @param asDisplayed The time in the current user's display format and time zone. The parameter must be formatted using the current user's preferred display format, such as HH:mm:ss.
      */
     setDisplayValue(asDisplayed: string): void;
@@ -71,8 +72,8 @@ declare class GlideTime {
 
     /**
      * Gets the duration difference between two GlideTime object values.
-     * @param start 
-     * @param end 
+     * @param start
+     * @param end
      */
     static subtract(start: GlideTime, end: GlideTime): GlideDuration;
 }

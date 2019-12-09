@@ -1,7 +1,7 @@
 /**
  * The GlideDateTime class provides methods for performing operations on GlideDateTime objects, such as instantiating GlideDateTime objects or working with glide_date_time fields.
 
-    Use the GlideDateTime methods to perform date-time operations, such as instantiating a GlideDateTime object, performing date-time calculations, formatting a date-time, or converting between date-time formats.
+ Use the GlideDateTime methods to perform date-time operations, such as instantiating a GlideDateTime object, performing date-time calculations, formatting a date-time, or converting between date-time formats.
  */
 declare class GlideDateTime {
 
@@ -14,7 +14,7 @@ declare class GlideDateTime {
     /**
      * Instantiates a new GlideDateTime object
      * @param value The GlideDateTime object to use for setting the time of the new object
-                OR 	 UTC date and time using the internal format yyyy-MM-dd HH:mm:ss.
+     OR     UTC date and time using the internal format yyyy-MM-dd HH:mm:ss.
      */
     constructor(value: string | GlideDateTime);
 
@@ -27,7 +27,7 @@ declare class GlideDateTime {
 
     /**
      * Adds a specified number of days to the current GlideDateTime object. A negative parameter subtracts days. The method determines the local date and time equivalent to the value stored by the GlideDateTime object, then adds or subtracts days using the local date and time values.
-     * @param amount 	The number of days to add. Use a negative value to subtract.
+     * @param amount    The number of days to add. Use a negative value to subtract.
      */
     addDaysLocalTime(amount: number): void;
 
@@ -75,34 +75,35 @@ declare class GlideDateTime {
     /**
      * Determines if the GlideDateTime object occurs on or after the specified GlideDateTime.
 
-     * @param instance 
+     * @param instance
      */
     onOrAfter(instance: GlideDateTime): boolean
-    /**
-    * Determines if the GlideDateTime object occurs before the specified GlideDateTime.
 
-    * @param instance The time to check against.
-    */
+    /**
+     * Determines if the GlideDateTime object occurs before the specified GlideDateTime.
+
+     * @param instance The time to check against.
+     */
     before(instance: GlideDateTime): boolean
 
     /**
      * Determines if the GlideDateTime object occurs on or before the specified GlideDateTime.
-     * @param instance 
+     * @param instance
      */
     onOrBefore(instance: GlideDateTime): boolean
 
     /**
      * Compares two date and time objects to determine whether they are equivalent or one occurs before or after the other.
-     * @param o 
+     * @param o
      * @returns 0 = Dates are equal
-                1 = The object's date is after the date specified in the parameter
-                -1 = The object's date is before the date specified in the parameter
+     1 = The object's date is after the date specified in the parameter
+     -1 = The object's date is before the date specified in the parameter
      */
     compareTo(o: GlideDateTime): 0 | 1 | -1;
 
     /**
      * Compares a datetime with an existing value for equality.
-     * @param o 
+     * @param o
      */
     equals(o: GlideDateTime): boolean;
 
@@ -120,9 +121,10 @@ declare class GlideDateTime {
 
     /**
      * Gets the day of the week stored by the GlideDateTime object, expressed in the user's time zone.
-    * @returns The day of week value, in the user's time zone, from 1 to 7. Monday equals 1, Sunday equals 7.
+     * @returns The day of week value, in the user's time zone, from 1 to 7. Monday equals 1, Sunday equals 7.
      */
     getDayOfWeekLocalTime(): dateutils.Days7;
+
     /**
      * Gets the day of the week stored by the GlideDateTime object, expressed in the UTC time zone.
      * @returns The day of week value from 1 to 7. Monday equals 1, Sunday equals 7.
@@ -141,6 +143,7 @@ declare class GlideDateTime {
      * @returns The date and time in the user's format and time zone. Keep in mind when designing business rules or script includes that this method may return values in different formats for different users.
      */
     getDisplayValue(): string;
+
     /**
      * Gets the display value in the internal format (yyyy-MM-dd HH:mm:ss).
      * @returns The date and time values for the GlideDateTime object in the current user's time zone and the internal date and time format of yyyy-MM-dd HH:mm:ss.
@@ -217,7 +220,7 @@ declare class GlideDateTime {
 
     /**
      * Gets the year stored by the GlideDateTime object, expressed in the current user's time zone.
-    * @returns Four-digit year value in the user's time zone.
+     * @returns Four-digit year value in the user's time zone.
 
      */
     getYearLocalTime(): number;
@@ -230,7 +233,7 @@ declare class GlideDateTime {
 
     /**
      * Determine if an object's date is set.
-    * @returns True if the object date is set; otherwise, returns false.
+     * @returns True if the object date is set; otherwise, returns false.
      */
     hasDate(): boolean;
 
@@ -238,6 +241,7 @@ declare class GlideDateTime {
      * Determines if an object's time uses a daylight saving offset.
      */
     isDST(): boolean;
+
     /**
      * Determines if a value is a valid date and time.
      */
@@ -250,32 +254,32 @@ declare class GlideDateTime {
     setDayOfMonthLocalTime(day: dateutils.Days31): void;
 
     /**
-     * 
+     *
      * @param day - The day of month to change to, from 1 to 31. If this value is greater than the maximum number of days in the month, the value is set to the last day of the month.
      */
     setDayOfMonthUTC(day: number): void;
 
     /**
      * Sets a date and time value using  either the current user's display format and time zone
-     *  or the specified date and time format. 
-     * This method throws a runtime exception if the date and time format used in the value parameter does not match the format parameter. 
+     *  or the specified date and time format.
+     * This method throws a runtime exception if the date and time format used in the value parameter does not match the format parameter.
      * You can retrieve the error message by calling getErrorMsg() on the GlideDateTime object after the exception is caught.
      * @param value - The date and time (in the current user's time zone if the second parameter is ommitted).
      * @param format - The date and time format to use to parse the value parameter.
-     * 
+     *
      * @example
      * var gdt = new GlideDateTime("2011-02-02 12:00:00");
-        gdt.setDisplayValue("20-5-2011 12:00:00", "dd-MM-yyyy HH:mm:ss"); //uses current user session time zone (US/Pacific)
-        gs.info(gdt.getValue());
+     gdt.setDisplayValue("20-5-2011 12:00:00", "dd-MM-yyyy HH:mm:ss"); //uses current user session time zone (US/Pacific)
+     gs.info(gdt.getValue());
      */
     setDisplayValue(value: string, format?: string): void;
 
     /**
      * Sets a date and time value using the internal format (yyyy-MM-dd HH:mm:ss) and the current user's time zone.
      * @param value - The date and time in internal format.
-    @example var gdt = new GlideDateTime("2014-02-02 12:00:00");
-gdt.setDisplayValueInternal("2014-01-01 12:00:00"); //uses current user session time zone (US/Pacific)
-gs.info(gdt.getValue());
+     @example var gdt = new GlideDateTime("2014-02-02 12:00:00");
+     gdt.setDisplayValueInternal("2014-01-01 12:00:00"); //uses current user session time zone (US/Pacific)
+     gs.info(gdt.getValue());
      */
     setDisplayValueInternal(value: string): void;
 
@@ -289,7 +293,7 @@ gs.info(gdt.getValue());
 
     /**
      * Sets the month stored by the GlideDateTime object to the specified value using the current user's time zone.
-     * @param month 
+     * @param month
      */
     setMonthLocalTime(month: number): void;
 
@@ -327,18 +331,18 @@ gs.info(gdt.getValue());
 
     /**
      * Gets the duration difference between two GlideDateTime values.
-     * @param start 
-     * @param end 
+     * @param start
+     * @param end
      */
     static subtract(start: GlideDateTime, end: GlideDateTime): GlideDuration;
     /**
      * Subtracts a specified amount of time from the current GlideDateTime object.
      * @param time The time value or the number of milliseconds to subtract.
-     * 
+     *
      * @example
      * var gdt = new GlideDateTime("2011-12-07 08:00:00");
-gdt.subtract(1000);
-gs.info(gdt.getValue());
+     gdt.subtract(1000);
+     gs.info(gdt.getValue());
      */
     subtract(time: GlideTime | number): void;
 
@@ -350,7 +354,38 @@ gs.info(gdt.getValue());
 }
 
 declare namespace dateutils {
-    type Days31 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31
+    type Days31 =
+        1
+        | 2
+        | 3
+        | 4
+        | 5
+        | 6
+        | 7
+        | 8
+        | 9
+        | 10
+        | 11
+        | 12
+        | 13
+        | 14
+        | 15
+        | 16
+        | 17
+        | 18
+        | 19
+        | 20
+        | 21
+        | 22
+        | 23
+        | 24
+        | 25
+        | 26
+        | 27
+        | 28
+        | 29
+        | 30
+        | 31
     type Days7 = 1 | 2 | 3 | 4 | 5 | 6 | 7
     type MonthLength = 28 | 29 | 30 | 31
     type MonthNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12

@@ -3,7 +3,10 @@ declare namespace internal {
         getElementValue<FieldName extends internal.OwnKeys<GlideRecordType>>(elementName: FieldName): internal.GetValueReturnValue<GlideRecordType[FieldName]>;
     }
 }
-declare type GlideElement<GlideRecordType, Type = glideElementType.defaultType> = Type & internal.GetElementValueType<GlideRecordType> & {
+declare type GlideElement<GlideRecordType, Type = glideElementType.defaultType> =
+    Type
+    & internal.GetElementValueType<GlideRecordType>
+    & {
     canCreate(): boolean;
 
     canRead(): boolean;
@@ -65,7 +68,7 @@ declare type GlideElement<GlideRecordType, Type = glideElementType.defaultType> 
 
     /**
      * Determines if the field has a value.
-    * @returns True if the field has a value, false otherwise.
+     * @returns True if the field has a value, false otherwise.
      */
     hasValue(): boolean
 
@@ -78,10 +81,10 @@ declare type GlideElement<GlideRecordType, Type = glideElementType.defaultType> 
     setValue(value: internal.AllowedTypes<Type>): void;
     /**
      * Get value of this element.
-     * 
+     *
      * Warning: This method is kind of missing in the official documentation
      */
     getValue(): internal.GetValueReturnValue<GlideElement<GlideRecordType, Type>>
 
-    toString(): string; 
+    toString(): string;
 }

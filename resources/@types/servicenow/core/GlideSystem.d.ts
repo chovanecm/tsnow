@@ -163,7 +163,7 @@ declare namespace internal {
                 }
             }
         }
-    } 
+    }
 }
 
 declare const gs: internal.GlideSystem

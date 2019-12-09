@@ -1,11 +1,11 @@
 /**
  * GlideRecord is used for database operations.
 
-A GlideRecord contains both records and fields. For information about GlideRecordSecure, which is a class inherited from GlideRecord that performs the same functions as GlideRecord, and also enforces ACLs, see the GlideServer APIs.
+ A GlideRecord contains both records and fields. For information about GlideRecordSecure, which is a class inherited from GlideRecord that performs the same functions as GlideRecord, and also enforces ACLs, see the GlideServer APIs.
 
-Always test queries on a sub-production instance prior to deploying them on a production instance. An incorrectly constructed encoded query, such as including an invalid field name, produces an invalid query. When the invalid query is run, the invalid part of the query condition is dropped, and the results are based on the valid part of the query, which may return all records from the table. Using an insert(), update(), deleteRecord(), or deleteMultiple() method on bad query results can result in data loss.
+ Always test queries on a sub-production instance prior to deploying them on a production instance. An incorrectly constructed encoded query, such as including an invalid field name, produces an invalid query. When the invalid query is run, the invalid part of the query condition is dropped, and the results are based on the valid part of the query, which may return all records from the table. Using an insert(), update(), deleteRecord(), or deleteMultiple() method on bad query results can result in data loss.
 
-You can set the glide.invalid_query.returns_no_rows system property to true to have queries with invalid encoded queries return no records.
+ You can set the glide.invalid_query.returns_no_rows system property to true to have queries with invalid encoded queries return no records.
  */
 declare type GlideRecord<T = any> = internal.BaseRecord<T> & internal.GlideElements<T> & {
 
@@ -16,22 +16,22 @@ declare type GlideRecord<T = any> = internal.BaseRecord<T> & internal.GlideEleme
 
     /**
      * Applies a pre-defined GlideDBFunctionBuilder object to a record.
-        Use the GlideDBFunctionBuilder scoped class to define a function. After the function is defined, use the addFunction(Object function) method to apply the function to a record.
+     Use the GlideDBFunctionBuilder scoped class to define a function. After the function is defined, use the addFunction(Object function) method to apply the function to a record.
      * @param fun - A GlideDBFunctionBuilder object that defines a SQL operation.
 
      @example
      var functionBuilder = new GlideDBFunctionBuilder();
-    var myAddingFunction = functionBuilder.add();
-    myAddingFunction = functionBuilder.field('order');
-    myAddingFunction = functionBuilder.field('priority');
-    myAddingFunction = functionBuilder.build();
+     var myAddingFunction = functionBuilder.add();
+     myAddingFunction = functionBuilder.field('order');
+     myAddingFunction = functionBuilder.field('priority');
+     myAddingFunction = functionBuilder.build();
 
-    var gr = new GlideRecord('incident');
-    gr.addFunction(myAddingFunction);
-    gr.addQuery(myAddingFunction, '<', 5);
-    gr.query();
-    while(gr.next())
-    gs.log(gr.getValue(myAddingFunction));
+     var gr = new GlideRecord('incident');
+     gr.addFunction(myAddingFunction);
+     gr.addQuery(myAddingFunction, '<', 5);
+     gr.query();
+     while(gr.next())
+     gs.log(gr.getValue(myAddingFunction));
      */
     addFunction(fun: GlideDBFunctionBuilder): void
 
@@ -40,14 +40,14 @@ declare type GlideRecord<T = any> = internal.BaseRecord<T> & internal.GlideEleme
     /**
      * Adds a filter to return records based on a relationship in a related table.
 
-        For example, find all the users that are in the database group (users via sys_user_grmember table). Another example would be find all problems that have an assigned incident (problems via the incident.problem_id relationship).
+     For example, find all the users that are in the database group (users via sys_user_grmember table). Another example would be find all problems that have an assigned incident (problems via the incident.problem_id relationship).
 
-        This is not a true database join; rather, addJoinQuery() adds a subquery. So, while the result set is limited based on the join, the only fields that you have access to are those on the base table (those which are in the table with which the GlideRecord was initialized).
+     This is not a true database join; rather, addJoinQuery() adds a subquery. So, while the result set is limited based on the join, the only fields that you have access to are those on the base table (those which are in the table with which the GlideRecord was initialized).
 
-        Always test queries on a sub-production instance prior to deploying them on a production instance. An incorrectly constructed encoded query, such as including an invalid field name, produces an invalid query. When the invalid query is run, the invalid part of the query condition is dropped, and the results are based on the valid part of the query, which may return all records from the table. Using an insert(), update(), deleteRecord(), or deleteMultiple() method on bad query results can result in data loss.
+     Always test queries on a sub-production instance prior to deploying them on a production instance. An incorrectly constructed encoded query, such as including an invalid field name, produces an invalid query. When the invalid query is run, the invalid part of the query condition is dropped, and the results are based on the valid part of the query, which may return all records from the table. Using an insert(), update(), deleteRecord(), or deleteMultiple() method on bad query results can result in data loss.
 
-        You can set the glide.invalid_query.returns_no_rows system property to true to have queries with invalid encoded queries return no records.
-     * @param joinTable 
+     You can set the glide.invalid_query.returns_no_rows system property to true to have queries with invalid encoded queries return no records.
+     * @param joinTable
      * @param ourKey - If other than sys_id, the primary field.
      * @param theirKey - If other than sys_id, the field that joins the tables
      */
@@ -55,7 +55,7 @@ declare type GlideRecord<T = any> = internal.BaseRecord<T> & internal.GlideEleme
 
     /**
      * Enables or disables the update to the fields sys_updated_by, sys_updated_on, sys_mod_count, sys_created_by, and sys_created_on. This is often used for manually updating field values on a record while leaving historical information unchanged
-      Note: This is not available for scoped apps, starting with the Fuji release. See the Scoped GlideRecord API Reference for a list of what APIs are available for scoped apps.
+     Note: This is not available for scoped apps, starting with the Fuji release. See the Scoped GlideRecord API Reference for a list of what APIs are available for scoped apps.
      * @param enable  If false disables updates to sys_updated_by, sys_updated_on, sys_mod_count, sys_created_by, and sys_created_on.
      */
     autoSysFields(enable: boolean): void
@@ -88,17 +88,17 @@ declare type GlideRecord<T = any> = internal.BaseRecord<T> & internal.GlideEleme
      * @returns True if any record has a matching value in the specified field.
      */
     find(columnName: internal.OwnKeys<T>, value: internal.primitive): boolean
-    
+
     /**
-     * 
-     * @param sysId 
+     *
+     * @param sysId
      * @returns Indicates whether the requested record was located:
      */
     get(sysId: string): boolean;
     /**
-     * 
+     *
      * @param columnName  Maybe supports dotwalking
-     * @param value 
+     * @param value
      * @returns Indicates whether the requested record was located:
      */
     get(columnName: internal.OwnKeys<T>, value: internal.primitive): boolean;
@@ -106,7 +106,7 @@ declare type GlideRecord<T = any> = internal.BaseRecord<T> & internal.GlideEleme
 
     /**
      * Returns the dictionary attributes on the specified field.
-     * @param fieldName 
+     * @param fieldName
      */
     getAttribute(fieldName: internal.OwnKeys<T>): string;
 
@@ -142,7 +142,7 @@ declare type GlideRecord<T = any> = internal.BaseRecord<T> & internal.GlideEleme
     /**
      * Retrieves the last error message. If there is no last error message, null is returned.
      */
-    getLastErrorMessage(): string|null;
+    getLastErrorMessage(): string | null;
 
     /**
      * Return URL to the current record
@@ -175,7 +175,7 @@ declare type GlideRecord<T = any> = internal.BaseRecord<T> & internal.GlideEleme
 
     /**
      * Checks a table for the type\class of table.
-     * @param className 
+     * @param className
      */
     instanceOf(className: string): boolean
 
@@ -209,8 +209,8 @@ declare type GlideRecord<T = any> = internal.BaseRecord<T> & internal.GlideEleme
     /**
      * Sets a flag to indicate if the next database action (insert, update, delete) is to be aborted.
 
-Use in an onBefore business rule to prevent the database action from being done. The business rule continues to run after setAbortAction() is called. Calling setAbortAction() does not stop subsequent business rules from executing. Calling this method only prevents the database action from occurring.
-     * @param abort 
+     Use in an onBefore business rule to prevent the database action from being done. The business rule continues to run after setAbortAction() is called. Calling setAbortAction() does not stop subsequent business rules from executing. Calling this method only prevents the database action from occurring.
+     * @param abort
      */
     setAbortAction(abort: boolean): void;
 
@@ -225,21 +225,21 @@ Use in an onBefore business rule to prevent the database action from being done.
 
     /**
      * Sets the specified field to the specified display value.
-    * For a reference field this is the display value for the table. For a date/time this is the time in the caller's current timezone.
-     * @param fieldName 
-     * @param value 
+     * For a reference field this is the display value for the table. For a date/time this is the time in the caller's current timezone.
+     * @param fieldName
+     * @param value
      */
     setDisplayValue(fieldName: internal.OwnKeys<T>, value: internal.primitive): void
 
     /**
      * Enables or disables the running of business rules that might normally be triggered by subsequent actions. If the e parameter is set to false, an insert/update will not be audited. Auditing only happens when the parameter is set to true for a GlideRecord operation.
-     * @param enable 
+     * @param enable
      */
     setWorkflow(enable: boolean): void;
 
     /**
      * Disable or enable the running of any engines (approval rules / assignment rules).
-     * @param enable 
+     * @param enable
      */
     setUseEngines(enable: boolean): void;
 
@@ -250,15 +250,15 @@ Use in an onBefore business rule to prevent the database action from being done.
     setQueryReferences(queryReferences: true): void
 
     /**
-     * 
-     * @param reason 
-     * @returns 	The sys_id of the new or update record. Returns null if the update fails.
+     *
+     * @param reason
+     * @returns    The sys_id of the new or update record. Returns null if the update fails.
      */
     update(reason?: string): string;
 
     /**
      * Updates a record and also inserts or updates any related records with the information provided.
-     * @param reasen 
+     * @param reasen
      * @returns The sys_id for the record being updated.
      */
     updateWithReferences(reasen?: string): string
@@ -270,5 +270,5 @@ Use in an onBefore business rule to prevent the database action from being done.
 
 
 declare const GlideRecord: {
-    new <T extends TableName>(tableName: T): GlideRecord<TableIndex[T]>
+    new<T extends TableName>(tableName: T): GlideRecord<TableIndex[T]>
 }

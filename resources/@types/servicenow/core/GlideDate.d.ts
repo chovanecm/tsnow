@@ -11,11 +11,11 @@ declare class GlideDate {
      * Gets the date in the specified date format.
 
 
-     * @param format 
+     * @param format
      * @example
-     * var gd = new GlideDate(); 
-gd.setValue('2015-01-01');
-gs.info(gd.getByFormat("dd-MM-yyyy"));
+     * var gd = new GlideDate();
+     gd.setValue('2015-01-01');
+     gs.info(gd.getByFormat("dd-MM-yyyy"));
      */
     getByFormat(format: string): string;
 
@@ -27,7 +27,7 @@ gs.info(gd.getByFormat("dd-MM-yyyy"));
 
     /**
      * Gets the date in the current user's display format and time zone.
-        @returns The date in the user's format and time zone. Keep in mind when designing business rules or script includes that this method may return values in different formats for different users.
+     @returns The date in the user's format and time zone. Keep in mind when designing business rules or script includes that this method may return values in different formats for different users.
      */
     getDisplayValue(): string;
 
@@ -40,7 +40,7 @@ gs.info(gd.getByFormat("dd-MM-yyyy"));
      * Gets the month stored by the GlideDate object, expressed in the UTC time zone.
      */
     getMonthNoTZ(): dateutils.MonthNumber;
-   
+
 
     /**
      * Gets the date value stored in the database by the GlideDate object in the internal format, yyyy-MM-dd, and the system time zone, UTC by default.
@@ -51,26 +51,27 @@ gs.info(gd.getByFormat("dd-MM-yyyy"));
      * Gets the year stored by the GlideDate object, expressed in the UTC time zone.
      */
     getYearNoTZ(): number
+
     /**
-     * 
+     *
      * @param asDisplayed The date in the current user's display format and time zone. The parameter must be formatted using the current user's preferred display format, such as yyyy-MM-dd.
      */
     setDisplayValue(asDisplayed: string): void;
 
     /**
      * Sets the date of the GlideDate object.
-     * @param o - 	The date and time to use.
+     * @param o -    The date and time to use.
      * @example
-     * var gd = new GlideDate(); 
-gd.setValue('2015-01-01');
-gs.info(gd.getValue());
+     * var gd = new GlideDate();
+     gd.setValue('2015-01-01');
+     gs.info(gd.getValue());
      */
     setValue(o: string): void;
 
     /**
      * Gets the duration difference between two GlideDate values.
-     * @param start 
-     * @param end 
+     * @param start
+     * @param end
      */
-    static subtract(start: GlideDate , end: GlideDate ): GlideDuration;
+    static subtract(start: GlideDate, end: GlideDate): GlideDuration;
 }

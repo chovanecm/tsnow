@@ -7,7 +7,9 @@
     "allowSyntheticDefaultImports": true,
     "checkJs": true,
     "noImplicitReturns": true,
-    "lib": ["es5"],
+    "lib": [
+      "es5"
+    ],
     "noImplicitAny": false,
     "noEmit": true,
     "strictNullChecks": true,
@@ -16,11 +18,10 @@
     "watch": true,
     "strictPropertyInitialization": true
   },
-    "include": [
-    	"**/*.ts",
-        "**/*.js"
-    ],
-
+  "include": [
+    "**/*.ts",
+    "**/*.js"
+  ],
   "exclude": [
     "node_modules",
     "docs",

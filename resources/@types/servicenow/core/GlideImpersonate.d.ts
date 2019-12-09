@@ -1,7 +1,7 @@
 /**
  * he global GlideImpersonate API enables administrators to pose as another authenticated user for testing purposes.
-* Use the GlideImpersonate API when you need to act as another user so to test functionality within your application. When impersonating another user, the administrator has access to exactly what the impersonated user would have access to in the system, including the same menus and modules.
-- Note: The system records anything the administrator does while impersonating another user as having been done by that user.
+ * Use the GlideImpersonate API when you need to act as another user so to test functionality within your application. When impersonating another user, the administrator has access to exactly what the impersonated user would have access to in the system, including the same menus and modules.
+ - Note: The system records anything the administrator does while impersonating another user as having been done by that user.
  */
 declare class GlideImpersonate {
     /**
@@ -14,7 +14,7 @@ declare class GlideImpersonate {
 
     /**
      * Verifies whether the current user can impersonate the specified user.
-    * If the current user is not assigned the admin role, the user to impersonate is inactive, or there are other issues with impersonating the specified user, the method returns "false" and the user cannot be impersonated.
+     * If the current user is not assigned the admin role, the user to impersonate is inactive, or there are other issues with impersonating the specified user, the method returns "false" and the user cannot be impersonated.
      * @param userSysId sys_Id of the user to impersonate
      */
     canImpersonate(userSysId: string): boolean

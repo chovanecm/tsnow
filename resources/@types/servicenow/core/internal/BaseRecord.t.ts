@@ -14,7 +14,6 @@ declare namespace internal {
         addQuery(fieldName: internal.QueryKeys<T>, value?: internal.primitive): GlideQueryCondition<T>;
 
 
-
         orderBy(name: internal.QueryKeys<T>): void;
 
 

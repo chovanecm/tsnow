@@ -6,23 +6,23 @@ declare namespace internal {
         /**
          * Clears a session client value previously set with putClientData().
 
-            This method is used in a client script to clear data values that were set by a server script using the putClientData() method.
-         * @param parameter 
+         This method is used in a client script to clear data values that were set by a server script using the putClientData() method.
+         * @param parameter
          */
         clearClientData(parameter: string): void
 
         /**
          * Sets a session client value that can be retrieved with getClientData(). This method is used in a server side script that runs when a form is created.
-         * @param paramName 
-         * @param paramValue 
+         * @param paramName
+         * @param paramValue
          */
         putClientData(paramName: string, paramValue: string): void
 
         /**
          * Returns a session client value previously set with putClientData().
 
-This method is used in a client script to retrieve data values that were set by a server script that used the putClientData() method.
-         * @param parameter 
+         This method is used in a client script to retrieve data values that were set by a server script that used the putClientData() method.
+         * @param parameter
          */
         getClientData(parameter: string): Packages.java.lang.String
 
@@ -33,7 +33,7 @@ This method is used in a client script to retrieve data values that were set by 
 
         /**
          * Gets a list of roles for the current user.
-        * The list of roles does not reflect any changes made during the current user session. To get the updated list of roles, the user must log out and log back in.
+         * The list of roles does not reflect any changes made during the current user session. To get the updated list of roles, the user must log out and log back in.
          */
         getRoles(): Packages.java.lang.String
 
