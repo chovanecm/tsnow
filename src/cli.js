@@ -14,12 +14,17 @@ const fs = require("fs");
 export function cli(args) {
   let programArguments = args.slice(2);
   if (programArguments.length < 1) {
-    console.error("Expected argument: INSTANCE (e.g. dev.service-now.com)");
+    console.error("Expected argument: INSTANCE (e.g. dev.service-now.com) TABLE");
     process.exit(9);
   }
   const instance = programArguments[0];
+  programArguments = programArguments.slice(1);
+  let limitToTable = null;
+  if (programArguments.length > 0) {
+    limitToTable = programArguments[0];
+  }
   const tableHierarchy = readInputData(instance);
-  generateProject(tableHierarchy, process.cwd()).then(closeIO);
+  generateProject(tableHierarchy, limitToTable, process.cwd()).then(closeIO);
 }
 
 

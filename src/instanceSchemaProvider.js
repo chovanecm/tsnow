@@ -111,6 +111,7 @@ export default class InstanceSchemaProvider {
  * @property {string} sys_id
  * @property {string} sys_name - Human-readable name
  * @property {Field[]} fields - table's own fields
+ * @property {Field[]|undefined} allFields - table's fields including reference fields
  */
 
 /**

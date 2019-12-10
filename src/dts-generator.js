@@ -1,26 +1,62 @@
 /**
  * Generate .d.ts. content for the given table
+ * @param {TableRegistry} tableRegistry
  * @param {Table} table
  * @return {string}
  */
-export function tableToDefinition(table) {
-  let strOut = "declare interface " + table.name + " {\n";
-  const allFields = [].concat(table.fields);
-  const addedFields = new Set(allFields.map(field => field.element));
-  let parent = table.super_class;
-  while (parent) {
-    parent.fields.filter(field => !addedFields.has(field.element)).forEach(field => {
-      addedFields.add(field.element);
-      allFields.push(field);
-    });
-    parent = parent.super_class;
+export function tableToDefinition(tableRegistry, table) {
+  return `declare interface ${table.name} {
+      ${fields(table)}
+      _referenceKeys: ${digReferenceKeys(table, 2).concat("never").join("|")};    
+    }
+   `;
+
+  function digReferenceKeys(table, depth, prefix = "") {
+    return getReferenceFields(table)
+      .reduce((prev, refField) => {
+        prev.push(...queryKeys(tableRegistry, refField.reference, depth, prefix + refField.element + "."));
+        return prev;
+      }, []);
   }
 
-  strOut += allFields.map(field => field.element + ": " + "GlideElement<" + table.name + ", " + getType(field) + ">").join("\n");
-  strOut += "\n";
-  strOut += "_referenceKeys: never\n";
-  strOut += "}\n";
-  return strOut;
+  function getReferenceFields(table) {
+    return table.allFields.filter(field => field.internal_type === "reference");
+  }
+
+  /**
+   *
+   * @param {TableRegistry} tableRegistry
+   * @param {string} tableName
+   * @param depth
+   * @param prefix
+   */
+  function queryKeys(tableRegistry, tableName, depth, prefix) {
+    if (depth === 0) {
+      return [];
+    }
+    const table = tableRegistry.getTableByName(tableName);
+    if (table === undefined) {
+      console.error("Skipping reference fields for " + tableName);
+      return [];
+    }
+    const result = table.allFields.map(field => `"${prefix}${field.element}"`);
+    result.push(...digReferenceKeys(table, depth - 1, prefix));
+    return result;
+  }
+
+}
+
+
+/**
+ *
+ * @param {Table} table
+ */
+function fields(table) {
+  return table.allFields.map(field => `${field.element}: ${optionalType(field)} GlideElement<${table.name}, ${getType(field)}>;`).join("\n");
+}
+
+function optionalType(field) {
+  return field.internal_type === "reference" ? `internal.GlideElements<${field.reference}> &` : "";
 }
 
 const supportedTypes = new Set(["boolean", "glide_date_time", "reference", "glide_date", "currency", "choice", "price"]);
