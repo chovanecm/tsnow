@@ -4,7 +4,7 @@ declare namespace internal {
     }
 }
 declare type GlideElement<GlideRecordType, Type = glideElementType.defaultType> =
-    Type
+    Omit<Type, "__type__">
     & internal.GetElementValueType<GlideRecordType>
     & {
     canCreate(): boolean;

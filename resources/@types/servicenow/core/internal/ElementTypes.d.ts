@@ -15,11 +15,11 @@ declare namespace glideElementType {
 
 
     type g_choice<Choices> = {
-        __g_choice__: never;
+        __type__: "choice";
     }
 
     interface defaultType {
-        __value__: never;
+        __type__: "default";
     }
 
     interface g_glide_date_time {
@@ -76,7 +76,7 @@ declare namespace glideElementType {
     }
 
     type g_boolean = {
-        __g_boolean__: never
+        __type__: "boolean"
     }
 
     type g_currency = {
