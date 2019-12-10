@@ -1,0 +1,6 @@
+#!/usr/bin/env node
+
+require = require("esm")(module);
+const cli = require("../src/cli");
+cli.cli(process.argv)
+process.on("exit", code => code === 0 ? console.log("Done.") : console.error("An error has occurred"));

@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "tsnow": "bin/tsnow"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chovanecm/tsnow.git"
@@ -17,6 +20,11 @@
   },
   "homepage": "https://github.com/chovanecm/tsnow#readme",
   "dependencies": {
+    "esm": "^3.2.25",
+    "flatted": "^2.0.1",
+    "ncp": "^2.0.0",
+    "prompt-password": "^1.2.0",
+    "servicenow-rest-api": "^1.1.0",
     "typescript": "^3.7.3"
   }
 }
