@@ -1,5 +1,10 @@
-const ServiceNow = require("servicenow-rest-api");
+
 const {promisify} = require("./utils");
+
+const ServiceNow = require("servicenow-rest-api");
+const HttpsProxyAgent = require('https-proxy-agent');
+import { getProxySettings, getAndTestProxySettings } from "get-proxy-settings";
+
 /**
  * Extracts table schema directly from a servicenow instance
  */
@@ -13,12 +18,22 @@ export default class InstanceSchemaProvider {
   constructor(instanceName, username, password) {
     /**@private */
     this.connector = new ServiceNow(instanceName, username, password);
-    this.connector.Authenticate();
     this.connector.getTableData = promisify(this.connector, this.connector.getTableData);
     /**@private */
     this.tablesBySysId = {};
     /**@private */
     this.tablesByName = {};
+  }
+
+  async init() {
+    const proxy = await getProxySettings();
+    if (proxy && proxy.https) {
+      console.log("Using proxy " + proxy.https.host + ":" + proxy.https.port);
+      this.connector.setNetworkOptions({
+        httpsAgent: new HttpsProxyAgent({host: proxy.https.host, port: proxy.https.port})
+      })
+    }
+    this.connector.Authenticate();
   }
 
   /**

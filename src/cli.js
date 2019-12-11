@@ -42,6 +42,7 @@ async function readInputData(instance) {
   const password = await readPassword("Password: ");
 
   const schemaBuilder = new InstanceSchemaProvider(instance, user, password);
+  await schemaBuilder.init();
   const tableHierarchy = schemaBuilder.buildTableSchema();
   dumpCacheFile().then(defaultCallback);
   return await tableHierarchy;
