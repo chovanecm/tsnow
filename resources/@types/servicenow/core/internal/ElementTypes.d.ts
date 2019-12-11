@@ -161,7 +161,7 @@ declare namespace internal {
         T extends glideElementType.g_boolean ? ("0" | "1" | 0 | 1 | boolean) :
             internal.primitive;
     type UnpackElementType<T extends GlideElement<any, any>> = T extends GlideElement<infer GlideRecordType, infer GlideElementType> ? GlideElementType : never;
-    type AllowedTypesOfField<T extends GlideElement<any, any>> = AllowedTypes<UnpackElementType<T>>
+    type AllowedTypesOfField<T> = T extends GlideElement<any, any> ? AllowedTypes<UnpackElementType<T>> : never;
     type GetValueReturnValue<T extends GlideElement<any, any>> = UnpackElementType<T> extends glideElementType.g_choice<infer Choices> ? Choices :
         UnpackElementType<T> extends glideElementType.g_boolean ? "0" | "1"
             : (string | null)
