@@ -28,10 +28,19 @@ export default class TableRegistry {
     return this.tablesByName[tableName];
   }
 
+  /**
+   *
+   * @return {Table[]}
+   */
   getAllTables() {
     return this.tables;
   }
 
+  /**
+   *
+   * @param tableName
+   * @return {Table[]}
+   */
   getAllParents(tableName) {
     const table = this.getTableByName(tableName);
     if (table === undefined) {
@@ -60,6 +69,11 @@ export default class TableRegistry {
     return Array.from(new Set(referencedTables));
   }
 
+  /**
+   *
+   * @param tableName
+   * @return {Table[]}
+   */
   getTableGraph(tableName) {
     const table = this.getTableByName(tableName);
     if (table === undefined) {

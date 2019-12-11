@@ -1,6 +1,6 @@
 import {buildTableIndex, tableToDefinition} from "./dts-generator";
 import * as fs from "fs";
-import {logErrorIfNotNull} from "./utils";
+import {logErrorIfNotNull, promisify} from "./utils";
 import TableRegistry from "./TableRegistry";
 
 const ncp = require("ncp");
@@ -15,7 +15,7 @@ export default async function generateProject(tableSchema, limitToTable, destina
   const tableRegistry = new TableRegistry(await tableSchema);
   const tablePath = destinationDirectory + "/@types/servicenow/tables";
   fs.mkdirSync(tablePath, {recursive: true});
-  const tablesToSave = limitToTable == null ? tableRegistry.tables
+  const tablesToSave = limitToTable == null ? tableRegistry.getAllTables()
     : tableRegistry.getAllTables().filter(table =>
       limitToTable.some(searchTable => {
         const asteriskPosition = searchTable.indexOf("*");
@@ -33,11 +33,19 @@ export default async function generateProject(tableSchema, limitToTable, destina
           return false;
         }
       })).flatMap(table => tableRegistry.getTableGraph(table.name));
+
+
+
+  const knownTables = Array.from(new Set(fs.readdirSync(tablePath)
+    .filter(file => file.endsWith(".d.ts") && file !== "index.d.ts")
+    .map(file => file.substr(0, file.length - ".d.ts".length))
+    .concat(...tablesToSave.map(table => table.name))));
+
   tablesToSave.forEach(table =>
     fs.writeFile(tablePath + "/" + table.name + ".d.ts",
-      tableToDefinition(tableRegistry, table),
-      logErrorIfNotNull));
-  fs.writeFile(tablePath + "/index.d.ts", buildTableIndex(tablesToSave), logErrorIfNotNull);
+      tableToDefinition(tableRegistry, table), logErrorIfNotNull));
+
+  fs.writeFile(tablePath + "/index.d.ts", buildTableIndex(knownTables), logErrorIfNotNull);
 
   const resources = __dirname + "/../resources/";
   ncp(resources, destinationDirectory, logErrorIfNotNull)

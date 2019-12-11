@@ -82,10 +82,14 @@ function getType(field) {
   }
 }
 
-
-export function buildTableIndex(tableHierarchy) {
+/**
+ *
+ * @param {string[]}tables
+ * @return {string}
+ */
+export function buildTableIndex(tables) {
   return "declare type TableIndex = {\n" +
-    tableHierarchy.map(table => table.name + ": " + table.name + ";").join("\n") +
+    tables.map(table => table + ": " + table + ";").join("\n") +
     "\n}\n" +
     "\n" +
     "declare type TableName = keyof TableIndex;"
