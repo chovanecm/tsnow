@@ -2,7 +2,7 @@ import InstanceSchemaProvider from "./instanceSchemaProvider";
 import {closeIO, readLine, readPassword} from "./cli-io";
 import {parse, stringify} from 'flatted/esm';
 import generateProject from "./project-generator";
-import {defaultCallback} from "./utils";
+import {defaultCallback, logErrorIfNotNull} from "./utils";
 
 const fs = require("fs");
 
@@ -27,12 +27,11 @@ export function cli(args) {
   generateProject(tableHierarchy, limitToTable, process.cwd()).then(closeIO);
 }
 
-
 async function readInputData(instance) {
-  const cacheFileName = instance + ".cache.json";
+  const cacheFileName = instance + ".cache.zip";
   if (fs.existsSync(cacheFileName)) {
-    if ((await readLine("Cached data found on your computer. Use it? [y/N] ")).toUpperCase() === "Y") {
-      return parse(fs.readFileSync(cacheFileName));
+    if ((await readLine("Cached data found on your computer. Use it? [Y/n] ")).toUpperCase() !== "N") {
+      return loadCacheFile(cacheFileName)
     }
   }
 
@@ -45,7 +44,15 @@ async function readInputData(instance) {
   return await tableHierarchy;
 
   async function dumpCacheFile() {
-    fs.writeFile(instance + ".cache.json", stringify(await tableHierarchy), console.error);
+    const zip = new (require('node-zip'))();
+    zip.file("schema.json", data);
+    const zipped = zip.generate({base64:false,compression:'DEFLATE'});
+    fs.writeFileSync(instance + ".cache.zip", zipped, 'binary');
+  }
+  function loadCacheFile(cacheFile) {
+    const data = fs.readFileSync(cacheFile, "binary");
+    const zip = new (require('node-zip'))(data, {base64: false, checkCRC32: true});
+    return parse(zip.files["schema.json"]._data);
   }
 }
 
