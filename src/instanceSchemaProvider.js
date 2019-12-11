@@ -51,7 +51,7 @@ export default class InstanceSchemaProvider {
    * @return {Promise<Table[]>}
    */
   async mergeWithFieldData(tableData) {
-    const stepSize = 100;
+    const stepSize = 50;
     const tableNames = tableData.map(table => table.name);
     const self = this;
     for (let i = 0; i < tableNames.length; i += stepSize) {
