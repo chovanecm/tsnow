@@ -15,7 +15,24 @@ export default async function generateProject(tableSchema, limitToTable, destina
   const tableRegistry = new TableRegistry(await tableSchema);
   const tablePath = destinationDirectory + "/@types/servicenow/tables";
   fs.mkdirSync(tablePath, {recursive: true});
-  const tablesToSave = limitToTable == null ? tableRegistry.tables : tableRegistry.getAllTables().filter(table => limitToTable.some(searchTable => table.name.indexOf(searchTable) >= 0));
+  const tablesToSave = limitToTable == null ? tableRegistry.tables
+    : tableRegistry.getAllTables().filter(table =>
+      limitToTable.some(searchTable => {
+        const asteriskPosition = searchTable.indexOf("*");
+        if (asteriskPosition < 0) {
+          // exact
+          return table.name === searchTable;
+        } else if (asteriskPosition === 0) {
+          // contains
+          return table.name.indexOf(searchTable.substr(1)) >= 0;
+        } else if (asteriskPosition === searchTable.length - 1) {
+          // starts with
+          return table.name.indexOf(searchTable.substr(0, searchTable.length - 1)) === 0;
+        } else {
+          console.error("Asterisk in the middle of table name => unknown search term.");
+          return false;
+        }
+      })).flatMap(table => tableRegistry.getTableGraph(table.name));
   tablesToSave.forEach(table =>
     fs.writeFile(tablePath + "/" + table.name + ".d.ts",
       tableToDefinition(tableRegistry, table),

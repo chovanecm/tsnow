@@ -15,8 +15,9 @@ export function cli(args) {
   let programArguments = args.slice(2);
   if (programArguments.length < 1) {
     console.error("Expected argument: INSTANCE (e.g. dev.service-now.com) TABLE_EXPRESSION");
-    console.error("TABLE_EXPRESSION: a comma separated list of terms to search in table names, e.g. cmdb_ci_,u_your_table");
-    console.error("                  that will match all tables containing cmdb_ci_ or u_your_table");
+    console.error("TABLE_EXPRESSION: a comma separated list of terms to search in table names, e.g. cmdb_ci_*,alm_hardware,*audit");
+    console.error("                  will match: all tables starting with cmdb_ci_, exactly alm_hardware, all tables containing audit");
+    console.error("                  and all their parent and related tables.");
     process.exit(9);
   }
   const instance = programArguments[0];
