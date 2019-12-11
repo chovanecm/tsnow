@@ -48,7 +48,7 @@ async function readInputData(instance) {
 
   async function dumpCacheFile() {
     const zip = new (require('node-zip'))();
-    zip.file("schema.json", data);
+    zip.file("schema.json", stringify(await tableHierarchy));
     const zipped = zip.generate({base64:false,compression:'DEFLATE'});
     fs.writeFileSync(instance + ".cache.zip", zipped, 'binary');
   }
