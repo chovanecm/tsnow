@@ -1,5 +1,5 @@
 declare namespace glideElementType {
-    interface g_reference<ReferenceTable> {
+    type g_reference<ReferenceTable> = internal.GlideElements<ReferenceTable> & {
 
         getRefRecord(): GlideRecord<ReferenceTable>
 

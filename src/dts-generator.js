@@ -52,11 +52,7 @@ export function tableToDefinition(tableRegistry, table) {
  * @param {Table} table
  */
 function fields(table) {
-  return table.allFields.map(field => `${field.element}: ${optionalType(field)} GlideElement<${table.name}, ${getType(field)}>;`).join("\n");
-}
-
-function optionalType(field) {
-  return field.internal_type === "reference" ? `internal.GlideElements<${field.reference}> &` : "";
+  return table.allFields.map(field => `${field.element}: GlideElement<${table.name}, ${getType(field)}>;`).join("\n");
 }
 
 const supportedTypes = new Set(["boolean", "glide_date_time", "reference", "glide_date", "currency", "choice", "price"]);
