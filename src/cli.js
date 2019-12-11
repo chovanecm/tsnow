@@ -3,31 +3,24 @@ import {closeIO, readLine, readPassword} from "./cli-io";
 import {parse, stringify} from 'flatted/esm';
 import generateProject from "./project-generator";
 import {defaultCallback, logErrorIfNotNull} from "./utils";
-
+import pkg from '../package.json';
 const fs = require("fs");
 
-
+const program = require('commander');
+program.version(pkg.version);
 /**
  *
  * @param {string[]} args
  */
 export function cli(args) {
-  let programArguments = args.slice(2);
-  if (programArguments.length < 1) {
-    console.error("Expected argument: INSTANCE (e.g. dev.service-now.com) TABLE_EXPRESSION");
-    console.error("TABLE_EXPRESSION: a comma separated list of terms to search in table names, e.g. cmdb_ci_*,alm_hardware,*audit");
-    console.error("                  will match: all tables starting with cmdb_ci_, exactly alm_hardware, all tables containing audit");
-    console.error("                  and all their parent and related tables.");
-    process.exit(9);
-  }
-  const instance = programArguments[0];
-  programArguments = programArguments.slice(1);
-  let limitToTable = null;
-  if (programArguments.length > 0) {
-    limitToTable = programArguments[0].split(",");
-  }
-  const tableHierarchy = readInputData(instance);
-  generateProject(tableHierarchy, limitToTable, process.cwd()).then(closeIO);
+  program.option("-r|--reference-keys <n>", "The number of dot-walks to support in addQuery. The more, the slower type checking.", 1)
+  .arguments("<instance> <tables...>")
+  .description("Build TypeScript definitions for the given instance in the current directory.\n" +
+  "tables: specify one or more tables to add to the current project. Use exact_table_name or *contains_name or starts_with_name*\n" +
+  "All parent and reference tables are included to encompass the transitive closure of references.")
+  .action(buildTypeScriptProject);
+
+  program.parse(args);
 }
 
 async function readInputData(instance) {
@@ -60,3 +53,7 @@ async function readInputData(instance) {
   }
 }
 
+function buildTypeScriptProject(instance, tables, flags) {
+  const tableHierarchy = readInputData(instance);
+  generateProject(tableHierarchy, tables, process.cwd(), flags.referenceKeys).then(closeIO);
+}

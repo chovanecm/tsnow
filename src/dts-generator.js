@@ -2,12 +2,15 @@
  * Generate .d.ts. content for the given table
  * @param {TableRegistry} tableRegistry
  * @param {Table} table
+ * @param {number} [referenceDepth=1] - How many levels ("dot walks") should be explored in order for addQuery("refField.anotherField.targetField") to work.
+ *                                      - The more levels are added, the slower type checking will be. 
+ *  - On the other hand, typescript will report false errors if a query does more dotwalking than specified.
  * @return {string}
  */
-export function tableToDefinition(tableRegistry, table) {
+export function tableToDefinition(tableRegistry, table, referenceDepth = 1) {
   return `declare interface ${table.name} {
       ${fields(table)}
-      _referenceKeys: ${digReferenceKeys(table, 2).concat("never").join("|")};    
+      _referenceKeys: ${digReferenceKeys(table, referenceDepth).concat("never").join("|")};    
     }
    `;
 

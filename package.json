@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/chovanecm/tsnow#readme",
   "dependencies": {
+    "commander": "^4.0.1",
     "esm": "^3.2.25",
     "flatted": "^2.0.1",
     "get-proxy-settings": "^0.1.11",
