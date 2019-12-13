@@ -10,13 +10,13 @@ You don't longer need to remember field names of your tables or search in the of
 
 ![Preview](https://i.imgur.com/Qp8BOJY.png)
 
-## Instalation
+## Installation
 ### Requirements
 - nodejs v12 or above
 - your favorite code editor with a TypeScript plugin enabled
 - a ServiceNow instance
 
-### Instalation Steps
+### Installation Steps
 - clone this repository
 - run:
 ```console
