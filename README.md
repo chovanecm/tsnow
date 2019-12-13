@@ -62,7 +62,7 @@ creates objects and injects global variables. Hence, it may report false-positiv
   @param {GlideRecord<sys_user>} user
 */
 function setAssetAssignedTo(asset, user) {
-   asset.setValue("assigned_to", user.getValue("sys_id");
+   asset.setValue("assigned_to", user.getValue("sys_id"));
 }
 
 /**
