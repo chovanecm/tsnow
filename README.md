@@ -8,7 +8,7 @@ and combining them with definition files generated from database schema of your 
 
 You don't longer need to remember field names of your tables or search in the official incomplete API documentation. *work in progress :-)*
 
-![Preview](https://i.imgur.com/oeaDgVr.png)
+![Preview](https://i.imgur.com/Qp8BOJY.png)
 
 ## Instalation
 ### Requirements
