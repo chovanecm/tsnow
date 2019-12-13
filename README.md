@@ -53,5 +53,27 @@ checking and auto-complete your code as you are typing.
 - TypeScript tries to infer correct types based on your code automatically, but it is not fully familiar with the way how ServiceNow
 creates objects and injects global variables. Hence, it may report false-positive errors in certain cases.
 - At the same time, when TypeScript is unable to determine the correct type, it will infer it as type `any` and will not run any type checks on it.
+- TypeScript does recognize basic JSDoc comments. If you want to be specific about type parameters or return types, you can optionally comment them with JSDoc, e.g.:
+```javascript
+
+/**
+   A function with exact GlideRecord types
+  @param {GlideRecord<alm_hardware>} asset
+  @param {GlideRecord<sys_user>} user
+*/
+function setAssetAssignedTo(asset, user) {
+   asset.setValue("assigned_to", user.getValue("sys_id");
+}
+
+/**
+  A function accepting generic GlideRecord
+  @param {GlideRecord} record
+  @param {string} username
+  @returns {boolean}
+*/
+function isAssetCreatedByUser(record, username) {
+   return record.getValue("sys_created_by") === username;
+}
+```
 - The current TypeScript setting for the generate files is rather strict and is subject to further tuning
 
