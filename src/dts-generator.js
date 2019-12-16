@@ -10,7 +10,9 @@
 export function tableToDefinition(tableRegistry, table, referenceDepth = 1) {
   return `declare interface ${table.name} {
       ${fields(table)}
-      _referenceKeys: ${digReferenceKeys(table, referenceDepth).concat("never").join("|")};    
+      _referenceKeys: never | {
+        ${digReferenceKeys(table, referenceDepth).join("\n")};
+      }
     }
    `;
 
@@ -42,7 +44,7 @@ export function tableToDefinition(tableRegistry, table, referenceDepth = 1) {
       console.error("Skipping reference fields for " + tableName);
       return [];
     }
-    const result = table.allFields.map(field => `"${prefix}${field.element}"`);
+    const result = table.allFields.map(field => `"${prefix}${field.element}": string`);
     result.push(...digReferenceKeys(table, depth - 1, prefix));
     return result;
   }

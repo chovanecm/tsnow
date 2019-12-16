@@ -1,6 +1,8 @@
 declare namespace internal {
     interface WithReferenceKeys {
-        _referenceKeys: string
+        _referenceKeys: {
+            [key: string]: string
+        }
     }
 
     type TestType = {
@@ -21,5 +23,5 @@ declare namespace internal {
     /**
      * A union of all keys that can be used for querying type T (including some reference fields)
      */
-    type QueryKeys<T> = T extends WithReferenceKeys ? (OwnKeys<T> | T["_referenceKeys"]) : OwnKeys<T>;
+    type QueryKeys<T> = T extends WithReferenceKeys ? (keyof T["_referenceKeys"] | OwnKeys<T>) : OwnKeys<T>;
 }
