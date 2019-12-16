@@ -1,6 +1,6 @@
 declare namespace internal {
     type GetElementValueType<GlideRecordType> = {
-        getElementValue<FieldName extends internal.OwnKeys<GlideRecordType>>(elementName: FieldName): internal.GetValueReturnValue<GlideRecordType[FieldName]>;
+        getElementValue<FieldName extends internal.OwnKeys<GlideRecordType>>(elementName: FieldName): internal.GetterValueDomain<GlideRecordType[FieldName]>;
     }
 }
 declare type GlideElement<GlideRecordType, Type = glideElementType.defaultType> =
@@ -15,9 +15,9 @@ declare type GlideElement<GlideRecordType, Type = glideElementType.defaultType> 
 
     changes(): boolean;
 
-    changesFrom(value: internal.AllowedTypes<Type>): boolean;
+    changesFrom(value: internal.ValueDomain<Type>): boolean;
 
-    changesTo(value: internal.AllowedTypes<Type>): boolean;
+    changesTo(value: internal.ValueDomain<Type>): boolean;
 
     /**
      * Debugs the object and adds debug messages using setError(String).
@@ -78,13 +78,13 @@ declare type GlideElement<GlideRecordType, Type = glideElementType.defaultType> 
 
     setError(value: string): void;
 
-    setValue(value: internal.AllowedTypes<Type>): void;
+    setValue(value: internal.ValueDomain<Type>): void;
     /**
      * Get value of this element.
      *
      * Warning: This method is kind of missing in the official documentation
      */
-    getValue(): internal.GetValueReturnValue<GlideElement<GlideRecordType, Type>>
+    getValue(): internal.GetterValueDomain<GlideElement<GlideRecordType, Type>>
 
     toString(): string;
 }

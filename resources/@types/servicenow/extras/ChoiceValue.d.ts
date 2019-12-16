@@ -1,1 +1,1 @@
-declare type ChoiceValue<Type, FieldName extends internal.OwnKeys<Type>> = internal.AllowedTypesOfField<Type[FieldName]>
+declare type ChoiceValue<Type, FieldName extends internal.OwnKeys<Type>> = internal.ValueDomainByElement<Type[FieldName]>

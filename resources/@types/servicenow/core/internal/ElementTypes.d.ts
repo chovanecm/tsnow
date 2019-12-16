@@ -157,12 +157,24 @@ declare namespace glideElementType {
 
 }
 declare namespace internal {
-    type AllowedTypes<T> = T extends glideElementType.g_choice<infer Choices> ? Choices :
-        T extends glideElementType.g_boolean ? ("0" | "1" | 0 | 1 | boolean) :
+    /**
+     * Extract values assignable to a GlideElement of type T
+     */
+    type ValueDomain<TGlideElementType> = TGlideElementType extends glideElementType.g_choice<infer Choices> ? Choices :
+        TGlideElementType extends glideElementType.g_boolean ? ("0" | "1" | 0 | 1 | boolean) :
             internal.primitive;
-    type UnpackElementType<T> = T extends GlideElement<infer GlideRecordType, infer GlideElementType> ? GlideElementType : never;
-    type AllowedTypesOfField<T> = T extends GlideElement<any, any> ? AllowedTypes<UnpackElementType<T>> : never;
-    type GetValueReturnValue<T> = UnpackElementType<T> extends glideElementType.g_choice<infer Choices> ? Choices :
+    /**
+     * Return the type of the Glide Element
+     */
+    type UnpackElementType<TGlideElement> = TGlideElement extends GlideElement<infer GlideRecordType, infer GlideElementType> ? GlideElementType : never;
+    /**
+     * Extract values assignable to the given GlideElement
+     */
+    type ValueDomainByElement<TGlideElement> = TGlideElement extends GlideElement<any, any> ? ValueDomain<UnpackElementType<TGlideElement>> : never;
+    /**
+     * Extract values that can be expected when a getter on a GlideElement of type T is called
+     */
+    type GetterValueDomain<T> = UnpackElementType<T> extends glideElementType.g_choice<infer Choices> ? Choices :
         UnpackElementType<T> extends glideElementType.g_boolean ? "0" | "1"
             : (string | null)
 }

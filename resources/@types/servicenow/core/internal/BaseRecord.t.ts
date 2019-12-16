@@ -1,4 +1,7 @@
 declare namespace internal {
+    /**
+     * Methods common both for {@link GlideRecord} and {@link GlideAggregate}.
+     */
     abstract class BaseRecord<T> {
         addEncodedQuery(query: string): void;
 
@@ -31,7 +34,7 @@ declare namespace internal {
 
         _next(): boolean;
 
-        getValue<FieldName extends internal.OwnKeys<T>>(field: FieldName): GetValueReturnValue<T[FieldName]>;
+        getValue<FieldName extends internal.OwnKeys<T>>(field: FieldName): GetterValueDomain<T[FieldName]>;
     }
 
 }
