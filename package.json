@@ -28,6 +28,9 @@
     "ncp": "^2.0.0",
     "node-zip": "^1.1.1",
     "prompt-password": "^1.2.0",
-    "servicenow-rest-api": "^1.1.0"
+    "servicenow-rest-api": "^1.1.1"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
   }
 }
