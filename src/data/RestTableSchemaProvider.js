@@ -1,5 +1,6 @@
+import AbstractTableSchemaProvider from "./AbstractTableSchemaProvider";
 
-const {promisify} = require("./utils");
+const {promisify} = require("../utils");
 
 const ServiceNow = require("servicenow-rest-api");
 const HttpsProxyAgent = require('https-proxy-agent');
@@ -8,7 +9,7 @@ import { getProxySettings, getAndTestProxySettings } from "get-proxy-settings";
 /**
  * Extracts table schema directly from a servicenow instance
  */
-export default class InstanceSchemaProvider {
+export default class RestTableSchemaProvider extends AbstractTableSchemaProvider{
   /**
    *
    * @param {string} instanceName
@@ -16,6 +17,7 @@ export default class InstanceSchemaProvider {
    * @param {string} password
    */
   constructor(instanceName, username, password) {
+    super();
     /**@private */
     this.connector = new ServiceNow(instanceName, username, password);
     this.connector.getTableData = promisify(this.connector, this.connector.getTableData);

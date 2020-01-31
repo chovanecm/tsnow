@@ -1,4 +1,4 @@
-import {promisify} from "./utils";
+import {promisify} from "../utils";
 
 const Prompt = require("prompt-password");
 const readline = require("readline");
