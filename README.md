@@ -23,8 +23,7 @@ You don't longer need to remember field names of your tables or search in the of
 npm install && npm link
 ```
 - switch to the root directory of your ServiceNow project (i.e. where you sync your scripts to)
-- See the help and download the definitions you need. *Note:* The "instance" must not contain the full domain name, i.e. use just 
-yourinstance, not yourinstance.service-now.com
+- See the help and download the definitions you need.
 - The first time you ask tsnow to generate definitions, it will download the whole database schema (without actual data) from your instance.
 That can take some time. It will cache it for future calls.
 
