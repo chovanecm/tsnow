@@ -5,6 +5,8 @@ import TableRegistry from "./TableRegistry";
 
 const ncp = require("ncp");
 
+const REQUIRED_TABLES = ["wf_context"];
+
 /**
  *
  * @param {Promise<Table[]>} tableSchema
@@ -15,6 +17,7 @@ const ncp = require("ncp");
  *  - On the other hand, typescript will report false errors if a query does more dotwalking than specified.
  */
 export default async function generateProject(tableSchema, limitToTable, destinationDirectory, referenceDepth = 1) {
+  limitToTable.push(...REQUIRED_TABLES);
   const tableRegistry = new TableRegistry(await tableSchema);
   const tablePath = destinationDirectory + "/@types/servicenow/tables";
   fs.mkdirSync(tablePath, { recursive: true });
@@ -35,7 +38,7 @@ export default async function generateProject(tableSchema, limitToTable, destina
         return false;
       }
     })).flatMap(table => tableRegistry.getTableGraph(table.name))));
-  
+
 
 
   const knownTables = Array.from(new Set(fs.readdirSync(tablePath)
