@@ -1,5 +1,5 @@
 # tsnow
-TypeScript-based tools for ServiceNow. Closed alpha.
+TypeScript-based tools for ServiceNow. Alpha version.
 
 ## Purpose
 tsnow uses TypeScript to inspect and enable auto-completion for ServiceNow scripts.
