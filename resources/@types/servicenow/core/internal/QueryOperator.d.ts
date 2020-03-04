@@ -7,6 +7,7 @@ declare namespace internal {
         | "<"
         | "<="
         | "IN"
+        | "NOT IN"
         | "STARTSWITH"
         | "ENDSWITH"
         | "CONTAINS"
