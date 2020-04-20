@@ -1,7 +1,7 @@
 /**
  * TableUtils is a class of shortcuts for accessing table related information.
  * The TableUtils class is available to server-side scripts.
- @todo SOme not that useful methods have been ommitted. Complete them and delete thsi TODO
+ @todo SOme not that useful methods have been omitted. Complete them and delete this TODO
  */
 declare class TableUtils {
     constructor(tableName: string)
@@ -17,4 +17,19 @@ declare class TableUtils {
     getTables(): Packages.java.util.List<Packages.java.lang.String>
 
     tableExists(): boolean
+
+    /**
+     * Drop table from the database
+     * @param tableName The table name
+     */
+    drop(tableName: string): void;
+
+    isValidField(filedName: string): boolean;
+
+    dropAndClean(tableName: string): void;
+    dropTableAndExtensions(tableName: string): void;
+
+    getAbsoluteBase(): Packages.java.lang.String;
+
+
 }
