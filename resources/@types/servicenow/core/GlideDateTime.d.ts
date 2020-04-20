@@ -204,7 +204,7 @@ declare class GlideDateTime {
      * Gets the date and time value stored by the GlideDateTime object in the internal format, yyyy-MM-dd HH:mm:ss, and the system time zone, UTC by default.
      * @example 2019-12-07 18:43:15
      */
-    getValue(): string;
+    getValue(): Packages.java.lang.String;
 
     /**
      * Gets the number of the week stored by the GlideDateTime object, expressed in the current user's time zone. All weeks begin on Sunday. The first week of the year is the week that contains at least one day of the new year. The week beginning Sunday 2015-12-27 is considered the first week of 2016 as that week contains January 1 and 2.
