@@ -1,19 +1,19 @@
 declare type GlideElementDescriptor = {
-    getAttachmentEncryptionType(): string;
+    getAttachmentEncryptionType(): Packages.java.lang.String;
 
-    getEncryptionType(): String;
+    getEncryptionType(): Packages.java.lang.String;
 
-    getInternalType(): String;
+    getInternalType(): Packages.java.lang.String;
 
-    getReference(): String | null;
+    getReference(): Packages.java.lang.String | null;
 
-    getLabel(): string;
+    getLabel(): Packages.java.lang.String;
 
     getLength(): number;
 
-    getName(): String;
+    getName(): Packages.java.lang.String;
 
-    getPlural(): boolean;
+    getPlural(): Packages.java.lang.String;
 
     hasAttachmentsEncrypted(): boolean;
 
