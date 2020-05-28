@@ -22,7 +22,7 @@ declare namespace internal {
 
         orderByDesc(name: internal.QueryKeys<T>): void;
 
-        query(field?: string, value?: object): void;
+        query(field?: internal.QueryKeys<T>, value?: internal.primitive): void;
 
         getRowCount(): number;
 

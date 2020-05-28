@@ -146,9 +146,9 @@ declare type GlideRecord<T = any> = internal.BaseRecord<T> & internal.GlideEleme
 
     /**
      * Return URL to the current record
-     * @param noStack If true, the link generated will not append &sysparm_stack=[tablename]_list.do? sysparm_query=active=true to the end of the URL; if false, the link will. Leaving the parameter empty defaults to false.
+     * @param [noStack=false] If true, the link generated will not append &sysparm_stack=[tablename]_list.do? sysparm_query=active=true to the end of the URL; if false, the link will. Leaving the parameter empty defaults to false.
      */
-    getLink(noStack: boolean): string;
+    getLink(noStack?: boolean): string;
 
     getPlural(): string
 
