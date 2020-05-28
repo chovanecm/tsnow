@@ -95,6 +95,11 @@ declare namespace glideElementType {
         getCurrencyValue(): string
 
         /**
+         * Returns the currency value as entered as an unformatted number, prefixed by the 3-letter ISO currency code, separated by a semicolon.
+         */
+        getCurrencyString(): string
+
+        /**
          * Returns the currency value in the user's session currency formatted in the user's locale with a currency symbol.
          */
         getDisplayValue(): string
