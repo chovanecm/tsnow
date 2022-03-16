@@ -83,7 +83,7 @@ declare namespace internal {
 
         getMessage(id: string, object?: any): string;
 
-        getProperty(key: string, altobject?: {}): {};
+        getProperty(key: string, altobject?: {}): string;
 
         getSession(): GlideSession;
 

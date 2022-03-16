@@ -17,7 +17,7 @@ declare type GlideRecord<T = any> = internal.BaseRecord<T> & internal.GlideEleme
     /**
      * Applies a pre-defined GlideDBFunctionBuilder object to a record.
      Use the GlideDBFunctionBuilder scoped class to define a function. After the function is defined, use the addFunction(Object function) method to apply the function to a record.
-     * @param fun - A GlideDBFunctionBuilder object that defines a SQL operation.
+     * @param fun - Function build using the {@link GlideDBFunctionBuilder}
 
      @example
      var functionBuilder = new GlideDBFunctionBuilder();
@@ -33,7 +33,7 @@ declare type GlideRecord<T = any> = internal.BaseRecord<T> & internal.GlideEleme
      while(gr.next())
      gs.log(gr.getValue(myAddingFunction));
      */
-    addFunction(fun: GlideDBFunctionBuilder): void
+    addFunction(fun: string): void
 
     addInactiveQuery(): GlideQueryCondition<T>
 

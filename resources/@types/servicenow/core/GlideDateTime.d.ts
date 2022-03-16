@@ -148,7 +148,7 @@ declare class GlideDateTime {
      * Gets the display value in the internal format (yyyy-MM-dd HH:mm:ss).
      * @returns The date and time values for the GlideDateTime object in the current user's time zone and the internal date and time format of yyyy-MM-dd HH:mm:ss.
      */
-    getDisplayValueInternal(): string;
+    getDisplayValueInternal(): Packages.java.lang.String;
 
     /**
      * Gets the amount of time that daylight saving time is offset.
@@ -328,6 +328,12 @@ declare class GlideDateTime {
     setYearLocalTime(year: number): void;
 
     setYearUTC(year: number): void;
+
+    /**
+     * Set time zone
+     * @param timeZone - Java TimeZone
+     */
+    setTZ(timeZone: Packages.java.util.TimeZone): void;
 
     /**
      * Gets the duration difference between two GlideDateTime values.

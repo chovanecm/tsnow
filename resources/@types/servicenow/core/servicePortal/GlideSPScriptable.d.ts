@@ -38,7 +38,15 @@ declare class GlideSPScriptable {
      * @param glideRecord
      * @param fieldNames A comma separated list of field names.
      */
-    getFieldsObject<T>(glideRecord: GlideRecord<T>, fieldNames): SPFieldsObject<T>
+    getFieldsObject<T>(glideRecord: GlideRecord<T>, fieldNames): SPFieldsObject<T>;
+
+    /**
+     * Gets a widget by id or sys_id, executes that widget's server script using the provided options, then returns the widget model.
+     * @param widgetId - The widget sys_id or widget_id
+     * @param options - An object to pass to the widget's server script. Refer to this object as options in your server script.
+    *   Note: Any options passed into this function will only be available in the embedded widget's server script on the first execution of that script. Any subsequent calls into the server script from the embedded widget will not contain the object properties passed in.
+     */
+    getWidget(widgetId: string, options?: {[key: string]: any}): Object;
 }
 declare const $sp: GlideSPScriptable;
 
