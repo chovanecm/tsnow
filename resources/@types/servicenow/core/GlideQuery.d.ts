@@ -1,5 +1,3 @@
-import Object = tsnow.Object;
-
 declare type GlideQuery<T = any> = {
     where(fieldName: internal.QueryKeys<T>, operator: internal.QueryOperator, value: internal.primitive): GlideQuery<T>;
     where(fieldName: internal.QueryKeys<T>, operator: "IN"|"NOT IN", value: internal.primitive[]): GlideQuery<T>;
@@ -34,13 +32,13 @@ declare type GlideQuery<T = any> = {
      * @param sysId
      * @param fields - default: sys_id
      */
-    get(sysId: string, fields?: internal.QueryKeys<T>): Optional<tsnow.Object<T>>;
+    get(sysId: string, fields?: internal.QueryKeys<T>): Optional<Partial<tsnow.Object<T>>>;
     /**
      *
      * @param sysId
      * @param fields - default: sys_id
      */
-    getBy(keyValues: tsnow.Object<T>, fields: internal.QueryKeys<T>): Optional<tsnow.Object<T>>;
+    getBy(keyValues: Partial<tsnow.Object<T>>, fields: internal.QueryKeys<T>): Optional<Partial<tsnow.Object<T>>>;
     groupBy(column: internal.QueryKeys<T>): GlideQuery<T>;
     groupBy(columns: internal.QueryKeys<T>[]): GlideQuery<T>;
     having(aggregate: internal.AggregateOperator, column: internal.QueryKeys<T>, operator: internal.QueryOperator, value: number): GlideQuery<T>;
@@ -49,10 +47,10 @@ declare type GlideQuery<T = any> = {
      * @param values - values to insert
      * @param returnBack - fields to return, default: sys_id
      */
-    insert(values: tsnow.Object<T>, returnBack?: internal.QueryKeys<T>[]): Optional<tsnow.Object<T>>;
-    insertOrUpdate(values: tsnow.Object<T>, returnBack?: internal.QueryKeys<T>[]): Optional<tsnow.Object<T>>;
-    update(values: tsnow.Object<T>, returnBack?: internal.QueryKeys<T>[]): Optional<tsnow.Object<T>>;
-    updateMultiple(values: tsnow.Object<T>): Optional<{ rowCount: number }>;
+    insert(values: Partial<tsnow.Object<T>>, returnBack?: internal.QueryKeys<T>[]): Optional<Partial<tsnow.Object<T>>>;
+    insertOrUpdate(values: Partial<tsnow.Object<T>>, returnBack?: internal.QueryKeys<T>[]): Optional<Partial<tsnow.Object<T>>>;
+    update(values: Partial<tsnow.Object<T>>, returnBack?: internal.QueryKeys<T>[]): Optional<Partial<tsnow.Object<T>>>;
+    updateMultiple(values: Partial<tsnow.Object<T>>): Optional<{ rowCount: number }>;
     limit(limit: number): GlideQuery<T>;
     max(column: internal.QueryKeys<T>): Optional<number>;
     min(column: internal.QueryKeys<T>): Optional<number>;
