@@ -15,7 +15,7 @@ declare type GlideAggregate<T = any> = internal.BaseRecord<T> & internal.GlideEl
      */
     addAggregate(aggregate: internal.AggregateOperator, column?: internal.QueryKeys<T>): void;
 
-    getAggregate(aggregate: internal.AggregateOperator, column?: internal.QueryKeys<T>): void;
+    getAggregate(aggregate: internal.AggregateOperator, column?: internal.QueryKeys<T>): string;
 
     groupBy(fieldName: keyof T): void;
 

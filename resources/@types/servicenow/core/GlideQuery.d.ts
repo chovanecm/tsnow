@@ -1,13 +1,14 @@
 declare type GlideQuery<T = any> = {
-    where(fieldName: internal.QueryKeys<T>, operator: internal.QueryOperator, value: internal.primitive): GlideQuery<T>;
     where(fieldName: internal.QueryKeys<T>, operator: "IN"|"NOT IN", value: internal.primitive[]): GlideQuery<T>;
+    where(fieldName: internal.QueryKeys<T>, operator: internal.QueryOperator, value: internal.primitive): GlideQuery<T>;
+
     where(fieldName: internal.QueryKeys<T>, value?: internal.primitive): GlideQuery<T>;
     where(query: GlideQuery<T>) : GlideQuery<T>;
     whereNotNull(fieldName: internal.QueryKeys<T>): GlideQuery<T>;
     whereNull(fieldName: internal.QueryKeys<T>): GlideQuery<T>;
 
-    orWhere(fieldName: internal.QueryKeys<T>, operator: internal.QueryOperator, value: internal.primitive): GlideQuery<T>;
     orWhere(fieldName: internal.QueryKeys<T>, operator: "IN"|"NOT IN", value: internal.primitive[]): GlideQuery<T>;
+    orWhere(fieldName: internal.QueryKeys<T>, operator: internal.QueryOperator, value: internal.primitive): GlideQuery<T>;
     orWhere(fieldName: internal.QueryKeys<T>, value?: internal.primitive): GlideQuery<T>;
     orWhere(query: GlideQuery<T>) : GlideQuery<T>;
     orWhereNotNull(fieldName: internal.QueryKeys<T>): GlideQuery<T>;
@@ -15,8 +16,8 @@ declare type GlideQuery<T = any> = {
 
     withAcls(): GlideQuery<T>;
 
-    select(...fieldNames: internal.QueryKeys<T>[]): Stream<T>;
-    selectOne(...fieldNames: internal.QueryKeys<T>[]): Optional<T>;
+    select(...fieldNames: internal.QueryKeys<T>[]): Stream<Partial<tsnow.ObjectOfStrings<T>>>;
+    selectOne(...fieldNames: internal.QueryKeys<T>[]): Optional<tsnow.ObjectOfStrings<T>>;
 
 
     aggregate(aggregate: internal.AggregateOperator, column: internal.QueryKeys<T>): GlideQuery<T>;

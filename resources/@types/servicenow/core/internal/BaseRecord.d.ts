@@ -11,8 +11,8 @@ declare namespace internal {
 
         addNullQuery(fieldName: internal.QueryKeys<T>): GlideQueryCondition<T>;
 
-        addQuery(fieldName: internal.QueryKeys<T>, operator: internal.QueryOperator, value: internal.primitive): GlideQueryCondition<T>;
         addQuery(fieldName: internal.QueryKeys<T>, operator: "IN"|"NOT IN", value: internal.primitive[]): GlideQueryCondition<T>;
+        addQuery(fieldName: internal.QueryKeys<T>, operator: internal.QueryOperator, value: internal.primitive): GlideQueryCondition<T>;
 
 
         addQuery(fieldName: internal.QueryKeys<T>, value?: internal.primitive): GlideQueryCondition<T>;
