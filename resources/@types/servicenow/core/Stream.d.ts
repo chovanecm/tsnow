@@ -32,7 +32,7 @@ declare class Stream<T> {
     static fromArray<T>(array: T[]): Stream<T>
     limit(max: number): Stream<T>
     map(mapperFn: (item: T) => T): Stream<T>
-    reduce<R>(reducerFn: (accumulator: R, item: T) => T, initialValue: R): R
+    reduce<R>(reducerFn: (accumulator: R, item: T) => R, initialValue: R): R
     some(predicateFn: (item: T) => boolean): boolean
 
     /**
