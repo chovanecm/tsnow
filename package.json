@@ -31,6 +31,6 @@
     "servicenow-rest-api": "^1.2.2"
   },
   "devDependencies": {
-    "jest": "^24.9.0"
+    "jest": "^29.3.1"
   }
 }
