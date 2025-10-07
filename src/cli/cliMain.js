@@ -1,8 +1,9 @@
-import * as commands from "../commands"
-import * as cli from "./cli"
-import pkg from '../../package.json';
-import {defaultCallback} from "../utils";
-const program = require('commander');
+import * as commands from "../commands.js";
+import * as cli from "./cli.js";
+import pkg from '../../package.json' with { type: 'json' };
+import {defaultCallback} from "../utils.js";
+import { Command } from 'commander';
+const program = new Command();
 program.version(pkg.version);
 
 /**
