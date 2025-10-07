@@ -17,7 +17,7 @@
     "url": "git+https://github.com/chovanecm/tsnow.git"
   },
   "author": "Martin Chovanec",
-  "license": "ISC",
+  "license": "GPL",
   "bugs": {
     "url": "https://github.com/chovanecm/tsnow/issues"
   },
