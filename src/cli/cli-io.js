@@ -1,7 +1,6 @@
-import {promisify} from "../utils";
-
-const Prompt = require("prompt-password");
-const readline = require("readline");
+import {promisify} from "../utils.js";
+import Prompt from "prompt-password";
+import readline from "readline";
 const rl = getReadline();
 
 export async function readPassword(question) {

@@ -12,23 +12,26 @@ You don't longer need to remember field names of your tables or search in the of
 
 ## Installation
 ### Requirements
-- nodejs v12 or above
-- your favorite code editor with a TypeScript plugin enabled
-- a ServiceNow instance
+- Node.js v18 or above
+- Your favorite code editor with a TypeScript plugin enabled
+- A ServiceNow instance
 
 ### Installation Steps
-- clone this repository
-- run:
+- Clone this repository
+- Run:
 ```console
-npm install && npm link
+npm install
+npm run build
+npm link
 ```
-- switch to the root directory of your ServiceNow project (i.e. where you sync your scripts to)
-- See the help and download the definitions you need.
-- The first time you ask tsnow to generate definitions, it will download the whole database schema (without actual data) from your instance.
-That can take some time. It will cache it for future calls.
+- Switch to the root directory of your ServiceNow project (where you sync your scripts to)
+- See the help and download the definitions you need
+- The first time you ask tsnow to generate definitions, it will download the whole database schema (without actual data) from your instance. This may take some time, but it will be cached for future calls.
+
+## Usage
 
 ```console
-you@yourcomputer:~$ tsnow --help
+$ tsnow --help
 Usage: tsnow [options] <instance> <tables...>
 
 Build TypeScript definitions for the given instance in the current directory.
@@ -39,20 +42,44 @@ Options:
   -V, --version            output the version number
   -r|--reference-keys <n>  The number of dot-walks to support in addQuery. The more, the slower type checking.
                            (default: 1)
-  -h, --help               output usage information
-  ```
+  -h, --help               display help for command
+```
 
-### Using it
-The tool should create a new file `tsconfig.json` and a directory called `@types`.
+### Example
 
-Open your code editor with an enabled TypeScript plugin. The editor will run `tsc` (TypeScript compiler) in the background and starts
-checking and auto-complete your code as you are typing.
+```console
+$ tsnow myinstance incident task sys_user
+```
+
+This will generate TypeScript definitions for the `incident`, `task`, and `sys_user` tables, along with all their parent and referenced tables.
+
+### Working with Generated Types
+The tool creates a `tsconfig.json` file and an `@types` directory with TypeScript definitions.
+
+Open your code editor with TypeScript support enabled. The editor will run the TypeScript compiler in the background, providing:
+- Auto-completion for ServiceNow API methods
+- Type checking for your scripts
+- IntelliSense for table fields and their types
+
+## Development
+
+### Building from Source
+```console
+npm install
+npm run build
+```
+
+The build output is placed in the `dist/` directory.
+
+### Running Tests
+```console
+npm test
+```
 
 ## Good to Know
-- TypeScript tries to infer correct types based on your code automatically, but it is not fully familiar with the way how ServiceNow
-creates objects and injects global variables. Hence, it may report false-positive errors in certain cases.
-- At the same time, when TypeScript is unable to determine the correct type, it will infer it as type `any` and will not run any type checks on it.
-- TypeScript does recognize basic JSDoc comments. If you want to be specific about type parameters or return types, you can optionally comment them with JSDoc, e.g.:
+- TypeScript infers types automatically, but it's not fully aware of how ServiceNow creates objects and injects global variables. You may see false-positive errors in certain cases.
+- When TypeScript cannot determine the correct type, it infers `any` and skips type checking for that value.
+- TypeScript recognizes JSDoc comments. Use them to specify exact types for parameters or return values:
 ```javascript
 
 /**
@@ -74,5 +101,8 @@ function isAssetCreatedByUser(record, username) {
    return record.getValue("sys_created_by") === username;
 }
 ```
-- The current TypeScript setting for the generate files is rather strict and is subject to further tuning
+
+## License
+
+GPL License - see LICENSE file for details.
 

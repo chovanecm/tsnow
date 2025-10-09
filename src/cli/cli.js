@@ -1,4 +1,4 @@
-import {readLine, readPassword} from "./cli-io";
+import {readLine, readPassword} from "./cli-io.js";
 
 export async function username() {
   return await readLine("Username: ");

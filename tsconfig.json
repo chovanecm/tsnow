@@ -1,30 +1,42 @@
 {
   "compilerOptions": {
-    "module": "None",
-    "target": "es5",
-    "sourceMap": false,
+    "module": "ES2020",
+    "target": "ES2020",
+    "lib": ["ES2020"],
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
     "allowJs": true,
+    "checkJs": false,
     "allowSyntheticDefaultImports": true,
-    "checkJs": true,
-    "noImplicitReturns": true,
-    "lib": [
-      "es5"
-    ],
-    "noImplicitAny": false,
-    "noEmit": true,
-    "strictNullChecks": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
     "noImplicitThis": true,
-    "alwaysStrict": true,
-    "watch": true,
-    "strictPropertyInitialization": false
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true
   },
   "include": [
-    "**/*.ts"
+    "src/**/*.ts",
+    "src/**/*.js"
   ],
   "exclude": [
     "node_modules",
+    "dist",
     "docs",
-    "ts-out",
+    "playground",
     "**/es2017/**/*"
   ]
 }

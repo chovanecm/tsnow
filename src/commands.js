@@ -1,12 +1,11 @@
-import generateProject from "./project-generator";
-import {closeIO} from "./cli/cli-io";
+import generateProject from "./project-generator.js";
+import {closeIO} from "./cli/cli-io.js";
 import * as fs from "fs";
-import {stringify} from 'flatted/esm';
-import {defaultCallback} from "./utils";
-import FileSystemCachedTableSchemaProvider from "./data/FileSystemCachedTableSchemaProvider";
-import RestTableSchemaProvider from "./data/RestTableSchemaProvider";
-
-const NodeZip = require('node-zip');
+import {stringify} from 'flatted';
+import {defaultCallback} from "./utils.js";
+import FileSystemCachedTableSchemaProvider from "./data/FileSystemCachedTableSchemaProvider.js";
+import RestTableSchemaProvider from "./data/RestTableSchemaProvider.js";
+import NodeZip from 'node-zip';
 
 /**
  * Read the database structure of a ServiceNow instance

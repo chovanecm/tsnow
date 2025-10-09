@@ -1,10 +1,8 @@
-import AbstractTableSchemaProvider from "./AbstractTableSchemaProvider";
-
-const {promisify} = require("../utils");
-
-const ServiceNow = require("servicenow-rest-api");
-const HttpsProxyAgent = require('https-proxy-agent');
-import { getProxySettings, getAndTestProxySettings } from "get-proxy-settings";
+import AbstractTableSchemaProvider from "./AbstractTableSchemaProvider.js";
+import {promisify} from "../utils.js";
+import ServiceNow from "servicenow-rest-api";
+import HttpsProxyAgent from 'https-proxy-agent';
+import { getProxySettings } from "get-proxy-settings";
 
 /**
  * Extracts table schema directly from a servicenow instance

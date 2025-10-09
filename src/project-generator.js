@@ -1,9 +1,14 @@
-import { buildTableIndex, tableToDefinition } from "./dts-generator";
+import { buildTableIndex, tableToDefinition } from "./dts-generator.js";
 import * as fs from "fs";
-import { logErrorIfNotNull, promisify } from "./utils";
-import TableRegistry from "./TableRegistry";
+import { logErrorIfNotNull, promisify } from "./utils.js";
+import TableRegistry from "./TableRegistry.js";
+import ncpPkg from "ncp";
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
-const ncp = require("ncp");
+const { ncp } = ncpPkg;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const REQUIRED_TABLES = ["wf_context"];
 

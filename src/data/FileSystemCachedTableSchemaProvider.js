@@ -1,8 +1,7 @@
-import AbstractTableSchemaProvider from "./AbstractTableSchemaProvider";
+import AbstractTableSchemaProvider from "./AbstractTableSchemaProvider.js";
 import * as fs from "fs";
-import {parse} from 'flatted/esm';
-
-const NodeZip = require('node-zip');
+import {parse} from 'flatted';
+import NodeZip from 'node-zip';
 
 export default class FileSystemCachedTableSchemaProvider extends AbstractTableSchemaProvider {
 
